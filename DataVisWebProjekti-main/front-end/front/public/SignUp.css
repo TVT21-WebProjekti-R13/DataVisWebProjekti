@@ -1,0 +1,131 @@
+:root {
+    --orange: #FFA767;
+
+}
+
+
+.SignUp h1,
+.LogIn h1 {
+    padding: 30px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.SignUp form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+}
+
+.LogIn form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+
+}
+
+
+#nappi {
+    border: none;
+    z-index: 2;
+    background-color: #43b581;
+}
+
+#nappi:focus,
+#nappi:hover {
+    background-color: #43b582a9;
+    cursor: pointer;
+}
+
+.SignUp input,
+.LogIn input {
+    text-align: center;
+    border-radius: 30px;
+    height: 50px;
+    font-size: 24px;
+    width: 100%;
+    border-style: solid;
+    z-index: 1;
+}
+
+.SignUp input:focus,
+.LogIn input:focus {
+    outline: none;
+}
+
+#switch {
+    padding: 30px;
+    text-align: center;
+    border: none;
+    background: none;
+    font-size: 16;
+    color: blue;
+}
+
+.SignUp-Wrap {
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 430px;
+    background-color: #fff;
+    display: flex;
+    height: 600px;
+    justify-content: center;
+}
+
+.modal-content {
+    border-radius: 30px;
+    padding: 0px;
+    margin: 0px;
+    width: 700px;
+}
+
+/* The Modal (background) */
+.modal {
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+}
+
+
+/* The Close Button */
+.close {
+    position: relative;
+    top: 45px;
+    color: #FF9494;
+    float: right;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Error {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 24px;
+    font-weight: bold;
+    color: #FF9494;
+    position: absolute;
+}
