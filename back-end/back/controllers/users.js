@@ -12,12 +12,27 @@ const db = mysql.createPool({
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
-    await db.execute(query, [name, email, password]);
-    res.status(201).send("User added");
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      return res.status(400).send("Missing fields");
+    }
+
+    const [rows, fields] = await db.execute(
+      "SELECT * FROM users WHERE username = ?",
+      [username]
+    );
+
+    if (rows.length > 0) {
+      return res.status(400).json({ message: "Username already exists" });
+    }
+
+    await db.execute(
+      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      [username, email, password]
+    );
+    res.status(200).json({ message: "User created" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
