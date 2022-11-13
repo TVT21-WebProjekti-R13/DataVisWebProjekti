@@ -1,13 +1,9 @@
-import './App.css';
-import { Component } from 'react'
+import SignUp from './Signup';
 
-class App extends React.Component() {
-
-  render() {
-    return (
-      <div />
-    );
-  }
+function App() {
+  return (
+    <SignUp />
+  )
 }
 
 export default App;
