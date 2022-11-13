@@ -1,24 +1,26 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
-const connection = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  database: process.env.DB_NAME || "datavis",
   password: process.env.DB_PASS || "",
+  database: process.env.DB_NAME || "datavis",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-const createUser = (data, callback) => {
-  connection.query(
-    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-    [data.name, data.email, data.password],
-    (err, result) => {
-      console.log("result", result);
-      console.log("err", err);
-    }
-  );
+const createUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+    await db.execute(query, [name, email, password]);
+    res.status(201).send("User added");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
-    createUser,
-}
-
+  createUser,
+};
