@@ -1,13 +1,22 @@
-import './App.css';
-import { Component } from 'react'
+import React from 'react'
+import './App.css'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/Home';
 
-class App extends React.Component() {
+function App(){
+  return (
+    <div className="App">
+      <Header/>
 
-  render() {
-    return (
-      <div />
-    );
-  }
+      <Home/>
+      
+      <Footer/>
+
+    </div>
+  );
 }
 
-export default App;
+
+//yksi muutos
+export default App
