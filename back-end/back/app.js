@@ -8,7 +8,7 @@ const testRouter = require("./routes/testRouter")   //TEST
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var dataRouter = require('./routes/data');
 var app = express();
 
 let PORT = process.env.PORT || 3001;
@@ -25,16 +25,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/', indexRouter);
+app.use('/data', dataRouter);
 app.use('/users', usersRouter);
 app.use('/test', testRouter)      //TEST
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
