@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
     }
 
     const [rows, fields] = await db.execute(
-      "SELECT * FROM users WHERE username = ?",
+      "SELECT * FROM käyttäjä WHERE username = ?",
       [username]
     );
 
@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
     }
 
     await db.execute(
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      "INSERT INTO käyttäjä (username, email, password) VALUES (?, ?, ?)",
       [username, email, password]
     );
     res.status(200).json({ message: "User created" });
