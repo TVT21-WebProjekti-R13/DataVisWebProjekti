@@ -37,8 +37,6 @@ const db = mysql.createConnection({
   password: "12345"
 })
 
-console.log('db pool created')
-
 db.connect(function(err) {
   if(err) throw err
   console.log("db connected!")

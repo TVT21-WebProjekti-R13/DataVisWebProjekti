@@ -10,16 +10,9 @@ const db = mysql.createPool({
     queueLimit: 0,
 });
 
-db.pool.on('connection', function() {
-    console.log('db connected')
-})
-
-
 const getData = async (req, res) => {
 
     const { data1 } = req.query
-    //const table = [data1, data2]
-    //const tableS = table.toString();
     const query1 = "SELECT * FROM " + data1;
 
     const [rows, fields] = await db.execute(query1);
