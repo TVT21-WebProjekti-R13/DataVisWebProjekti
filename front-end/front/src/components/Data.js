@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 function Data() {
     const [chartData, setChartData] = useState();
 
@@ -21,14 +22,8 @@ function Data() {
         getChartData();
     }, []);
 
-    console.log(chartData);
+    console.log("Data.js sanoo: " + chartData)
 }
 
 
 export default Data;
-
-
-
-
-
-

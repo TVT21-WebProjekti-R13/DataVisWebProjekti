@@ -17,6 +17,4 @@ function App() {
   );
 }
 
-
-//yksi muutos
 export default App
