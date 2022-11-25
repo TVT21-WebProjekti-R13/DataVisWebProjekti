@@ -1,10 +1,9 @@
 import React from "react";
 import Styles from "./Styles.css"
+import { Link } from "react-router-dom";
 
-function Header()
-{
+function Header() {
     return(
-    <React.Fragment>
         <nav className="navbar navbar-expand-lg" id="headerbg">
             <div className="container">
                     <a className="navbar-brand" href="#">Visualisointityökalu</a>
@@ -14,7 +13,7 @@ function Header()
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Koti</a>
+                            <Link to="/">Koti</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Linkit</a>
@@ -33,6 +32,9 @@ function Header()
                         <li className="nav-item">
                             <a className="nav-link disabled">Testit</a>
                         </li>
+                        <li className="nav-item">
+                            <Link to="visuals">visualisoinnit</Link>
+                        </li>
                     </ul>
                 <form className="d-flex" role="search">
                     <input className="form-control me-2" type="search" placeholder="Etsi" aria-label="Etsi"/>
@@ -41,8 +43,6 @@ function Header()
                 </div>
             </div>
         </nav>
-    </React.Fragment>
-
     );
 }
 
