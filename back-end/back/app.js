@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');  //KAtsotaan tarviiko
 var logger = require('morgan');               //KAtsotaan tarviiko
 var cors = require('cors')
 const testRouter = require("./routes/testRouter")   //TEST
+const mysql = require('mysql')    //Miksi tätä ei ollut aiemmin : D:D: 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -28,6 +29,18 @@ app.use('/', indexRouter);
 app.use('/data', dataRouter);
 app.use('/users', usersRouter);
 app.use('/test', testRouter)      //TEST
+
+const db = mysql.createConnection({
+  host: "127.0.0.1",
+  port: "3306",
+  user: "root",
+  password: "12345"
+})
+
+db.connect(function(err) {
+  if(err) throw err
+  console.log("db connected!")
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

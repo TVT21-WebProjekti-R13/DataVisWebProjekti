@@ -11,8 +11,8 @@ function Data() {
                 {
                     params:
                     {
-                        data1: "hadcrutglobalannual",
-                        data2: "hadcrutglobalmonthly"
+                        data1: "hadcrutglobalannual"
+                        //data2: "hadcrutglobalmonthly"
                     }
                 })
             setChartData(data);
