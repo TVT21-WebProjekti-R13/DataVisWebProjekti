@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-const { createUser } = require("../controllers/users");
-const { loginUser } = require("../controllers/users");
-/* GET users listing. */
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
+const { createUser, loginUser } = require("../controllers/users");
+
 router.post("/create", createUser);
-router.post("/login", loginUser);
+router.post("/login", passport.authenticate("basic", { session: false }), loginUser);
+
 module.exports = router;
