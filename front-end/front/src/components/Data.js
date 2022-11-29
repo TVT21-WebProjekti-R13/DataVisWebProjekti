@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Data() {
@@ -11,14 +11,16 @@ function Data() {
                 {
                     params:
                     {
-                        data1: "hadcrutglobalannual"
-                        //data2: "hadcrutglobalmonthly"
+                        //data1: "hadcrutglobalannual"
+                        data2: "hadcrutglobalmonthly"
                     }
                 })
             setChartData(data);
 
         }
         getChartData();
+        return(<>{chartData && chartData}</>);
+
     }, []);
 
     console.log(chartData);
@@ -26,9 +28,3 @@ function Data() {
 
 
 export default Data;
-
-
-
-
-
-
