@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "12345",
+  password: process.env.DB_PASS || "",
   database: process.env.DB_NAME || "sqltietokanta",
   waitForConnections: true,
   connectionLimit: 10,
@@ -13,10 +13,15 @@ const db = mysql.createPool({
 
 const createUser = async (req, res) => {
   try {
-    const { username, password, email, firstname, lastname } = req.body;
+    const { username, password } = req.body;
 
-    const [rows, fields] = await db.query(
-      "SELECT * FROM käyttäjä WHERE Käyttäjänimi = ?",
+
+    if (!username || !password) {
+      return res.status(400).send("Missing fields");
+    }
+
+    const [rows, fields] = await db.execute(
+      "SELECT * FROM users WHERE username = ?",
       [username]
     );
 
@@ -24,17 +29,15 @@ const createUser = async (req, res) => {
       return res.status(400).json({ message: "Username already exists" });
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
-
-    await db.query(
-      "INSERT INTO käyttäjä (Käyttäjänimi, sPosti, Etunimi, Sukunimi, SalasanaSalt) VALUES (?, ?, ?, ?, ?)",
-      [username, email, firstname, lastname, hashedPassword]
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(password, saltRounds);
+    await db.execute(
+      "INSERT INTO users (username,password) VALUES (?, ?)",
+      [username, hash]
     );
-
     res.status(200).json({ message: "User created" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: error.message });
   }
 };
 
