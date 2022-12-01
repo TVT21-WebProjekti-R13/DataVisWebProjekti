@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-const { getData } = require("../controllers/data");
+const express = require('express');
+const passport = require("passport");
+const router = express.Router();
+const { getData, getProtectedData } = require("../controllers/data");
 
-/* GET users listing. */
 router.get("/getData", getData);
+router.get("/protected", passport.authenticate("jwt", { session: false }), getProtectedData);
 
 module.exports = router;

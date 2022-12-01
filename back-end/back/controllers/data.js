@@ -27,6 +27,18 @@ const getData = async (req, res) => {
     }
     res.json(results);
 }
+
+// protected data example
+const getProtectedData = async (req, res) => {
+    const data = [
+        { id: 1, name: "John", age: 20 },
+        { id: 2, name: "Jane", age: 21 },
+        { id: 3, name: "Jack", age: 22 },
+    ];
+    res.json(data);
+};
+
 module.exports = {
     getData,
+    getProtectedData,
 };
