@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise");
 const db = mysql.createPool({
     host: process.env.DB_HOST || "127.0.0.1",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASS || "",
+    password: process.env.DB_PASS || "12345",
     database: process.env.DB_NAME || "sqltietokanta",
     waitForConnections: true,
     connectionLimit: 10,
@@ -20,7 +20,7 @@ const getData = async (req, res) => {
         if (table[i] == "users") {
             results = "Sormi sanoo soosoo!";
         }
-        const [rows, fields] = await db.execute(query);
+        const [rows, fields] = await db.query(query);
         if (rows.length > 0) {
             results[i] = rows;
         }

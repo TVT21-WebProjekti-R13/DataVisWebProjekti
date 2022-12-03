@@ -6,7 +6,6 @@ const mysql = require("mysql2");
 const passport = require("passport");
 const BasicStrategy = require("passport-http").BasicStrategy;
 const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -22,14 +21,20 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(helmet());
 
 passport.use(new BasicStrategy(verifyUser));
 passport.use(
   new JwtStrategy(
     {
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: (req) => {
+        let token = null;
+        if (req && req.cookies) {
+          token = req.cookies["token"];
+        }
+        return token;
+      },
       secretOrKey: process.env.JWT_SECRET || "test",
     },
     (jwtPayload, done) => {
@@ -48,7 +53,7 @@ const db = mysql.createConnection({
   host: "127.0.0.1",
   port: "3306",
   user: "root",
-  password: "",
+  password: "12345",
 });
 
 db.connect(function (err) {
