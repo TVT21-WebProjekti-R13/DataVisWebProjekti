@@ -15,17 +15,27 @@ const getData = async (req, res) => {
     const { data1 } = req.query
     const table = data1
     let results = [];
-    for (let i = 0; i < table.length; i++) {
-        const query = "SELECT * FROM " + table[i];
-        if (table[i] == "users") {
-            results = "Sormi sanoo soosoo!";
-        }
-        const [rows, fields] = await db.execute(query);
-        if (rows.length > 0) {
-            results[i] = rows;
+    if (table) {
+        for (let i = 0; i < table.length; i++) {
+            const query = "SELECT * FROM " + table[i];
+            if (table[i] == "users") {
+                results = "Sormi sanoo soosoo!";
+            }
+            const [rows, fields] = await db.execute(query);
+            if (rows.length > 0) {
+                results[i] = rows;
+            }
         }
     }
     res.json(results);
+}
+
+const saveData = async (req, res) => {
+    const data1 = req.body.params.data1;
+    const table = data1.toString();
+    await db.execute("INSERT INTO visuals (tables,userID) VALUES (?, ?)", [table, 1]);
+    res.json(table);
+
 }
 
 // protected data example
@@ -41,4 +51,5 @@ const getProtectedData = async (req, res) => {
 module.exports = {
     getData,
     getProtectedData,
+    saveData
 };

@@ -23,11 +23,35 @@ ChartJS.register(
 
 export default function Visuals(props) {
   const [chartData, setChartData] = useState();
-  let table = ["hadcrutglobalannual", "hadcrutglobalmonthly", "hadcrutnorthernannual", "hadcrutnorthernmonthly", "hadcrutsouthernannual", "hadcrutsouthernmonthly"];
-  if (props.setTables) {
+  let table = [];
 
-    table = props.setTables.split(',');
-    console.log(table)
+
+
+  if (props.setTables) {
+    if (props.setTables[0].length === 1) {
+      table = props.setTables.split(',');
+    } else {
+      table = props.setTables;
+    }
+  } else {
+    table = localStorage.getItem("table").split(',')
+  }
+  localStorage.setItem("table", table);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let result = await axios.post('http://localhost:3001/data/saveData', {
+      params:
+      {
+        data1: table,
+      }
+    })
+      .then(function (response) {
+        //console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   //Get data from backend and set it to charts Datasets and to the useState
@@ -42,7 +66,7 @@ export default function Visuals(props) {
     //Save results to "result"
     result = result.data;
     //const labels = [];
-    const labels = result[1].map(row => row.time);
+    const labels = result[0].map(row => row.time);
     const datasets = [];
     let colors = ["rgb(252, 186, 3)", "rgb(202, 17, 200)", "rgb(102, 117, 20)", "rgb(2, 255, 20)", "rgb(2, 2, 200)", "rgb(200, 2, 2)"]
 
@@ -54,7 +78,7 @@ export default function Visuals(props) {
         borderColor: colors[i],
         backgroundColor: colors[i],
       }
-      console.log(datasets[i]);
+      //console.log(datasets[i]);
     }
 
 
@@ -72,7 +96,12 @@ export default function Visuals(props) {
 
   //Use effect to make fetchData() run on render
   useEffect(() => {
-    fetchData()
+    try {
+      fetchData()
+    } catch (error) {
+      console.log(error);
+    }
+
   }, []);
 
   //Set options
@@ -96,8 +125,13 @@ export default function Visuals(props) {
   //Check if the useState has Data. If it does return the function
   if (chartData) {
     return (
-      <Line options={options}
-        data={chartData}></Line>
+      <>
+        <Line options={options}
+          data={chartData}></Line>
+        <form onSubmit={handleSubmit}>
+          <button value={table}>Save visual</button>
+        </form>
+      </>
     );
   }
 }

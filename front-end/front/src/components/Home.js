@@ -1,17 +1,42 @@
 import { React, useState } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Home(props) {
-    const [value, setValue] = useState([""]);
+    const [value, setValue] = useState([]);
     const navigate = useNavigate()
     function handleSubmit(e) {
-
         e.preventDefault();
-        props.setTables(value)
-        navigate("/visuals");
+        console.log(e);
+        if (value.length === 0) {
+            console.log("data needed to create a visual");
+        } else {
+            props.setTables(value);
+            navigate("/visuals");
+        }
 
 
     }
-    const V1 = ["hadcrutglobalannual", "hadcrutglobalmonthly", "hadcrutnorthernannual", "hadcrutnorthernmonthly", "hadcrutsouthernannual", "hadcrutsouthernmonthly"]
+    function changeTime(e) {
+        if (value.includes(e)) {
+            var index = value.indexOf(e);
+            value.splice(index, 1);
+            value.unshift(e);
+            console.log(value);
+        }
+    }
+    function appendValue(e) {
+        if (value.includes(e)) {
+            var index = value.indexOf(e);
+            value.splice(index, 1);
+            document.getElementById(e + "r").checked = false;
+            if (value[0]) {
+                document.getElementById(value[0] + "r").checked = true;
+            }
+        } else {
+            value.push(e);
+        }
+        console.log(value)
+    }
+    const V1 = ["hadcrutglobalmonthly", "hadcrutglobalannual", "hadcrutnorthernannual", "hadcrutnorthernmonthly", "hadcrutsouthernannual", "hadcrutsouthernmonthly"]
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -19,7 +44,9 @@ function Home(props) {
             </form>
             <h1>Create a visual</h1>
             <form onSubmit={handleSubmit}>
-                {V1.map(e => <><label for={e}>{e}</label><input type="checkbox" id={e} value={e} /><br></br></>)}
+                {V1.map(e => <><label for={e}>{e}</label><input type="checkbox" id={e} value={e} onClick={(e) => appendValue(e.target.value)} />
+                    Time<input name="same" id={e + "r"} value={e} type="radio" onClick={(e) => changeTime(e.target.value)} /><br></br></>)}
+                <button type='submit'>create</button>
             </form>
         </>
 
