@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { useParams } from 'react-router-dom';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,19 +25,25 @@ ChartJS.register(
 export default function Visuals(props) {
   const [chartData, setChartData] = useState();
   let table = [];
+  const { id } = useParams();
 
-
-
-  if (props.setTables) {
-    if (props.setTables[0].length === 1) {
-      table = props.setTables.split(',');
-    } else {
-      table = props.setTables;
-    }
-  } else {
-    table = localStorage.getItem("table").split(',')
+  async function getCustomData() {
+    const { data } = await axios.get("/data/getCustomData", {
+      params: { shareID: id },
+    });
+    console.log(data);
+    return data;
   }
-  localStorage.setItem("table", table);
+
+  function getDataFromProps() {
+    if (props.setTables) {
+      if (props.setTables[0].length === 1) {
+        table = props.setTables.split(',');
+      } else {
+        table = props.setTables;
+      }
+    } 
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,12 +103,20 @@ export default function Visuals(props) {
 
   //Use effect to make fetchData() run on render
   useEffect(() => {
-    try {
-      fetchData()
-    } catch (error) {
-      console.log(error);
+    if (id) {
+      getCustomData()
+      .then((data) => {
+        if (data) {
+          table = data.split(',');
+          console.log(table)
+          fetchData();
+        }
+        
+      })
+    } else {
+      getDataFromProps();
+      fetchData();
     }
-
   }, []);
 
   //Set options
@@ -126,8 +141,7 @@ export default function Visuals(props) {
   if (chartData) {
     return (
       <>
-        <Line options={options}
-          data={chartData}></Line>
+        <Line options={options} data={chartData}></Line>
         <form onSubmit={handleSubmit}>
           <button value={table}>Save visual</button>
         </form>

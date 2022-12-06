@@ -1,8 +1,11 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserVisuals from "./UserVisuals";
 function Home(props) {
     const [value, setValue] = useState([]);
-    const navigate = useNavigate()
+    const navigate = useNavigate()    
+
+
     function handleSubmit(e) {
         e.preventDefault();
         console.log(e);
@@ -48,6 +51,8 @@ function Home(props) {
                     Time<input name="same" id={e + "r"} value={e} type="radio" onClick={(e) => changeTime(e.target.value)} /><br></br></>)}
                 <button type='submit'>create</button>
             </form>
+
+            <UserVisuals />
         </>
 
     );

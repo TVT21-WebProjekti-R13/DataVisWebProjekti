@@ -9,7 +9,17 @@ import axios from 'axios';
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
-
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
 
 function App() {
   const [tables, setTables] = useState();
@@ -19,7 +29,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home setTables={setTables} />} />
-          <Route path="/visuals" element={<Visuals setTables={tables} />} />
+          <Route path="/visuals" element={<Visuals setTables={tables} />}>
+            <Route path=":id" element={<Visuals />} />
+          </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
