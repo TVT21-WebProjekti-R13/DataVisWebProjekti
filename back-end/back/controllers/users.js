@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "",
+  password: process.env.DB_PASS || "12345",
   database: process.env.DB_NAME || "sqltietokanta",
   waitForConnections: true,
   connectionLimit: 10,
@@ -21,7 +21,7 @@ const createUser = async (req, res) => {
       return res.status(400).send("Missing fields");
     }
 
-    const [rows, fields] = await db.execute(
+    const [rows, fields] = await db.query(
       "SELECT * FROM users WHERE username = ?",
       [username]
     );
@@ -30,9 +30,8 @@ const createUser = async (req, res) => {
       return res.status(400).json({ message: "Username already exists" });
     }
 
-    const saltRounds = 10;
-    const hash = bcrypt.hashSync(password, saltRounds);
-    await db.execute(
+    const hash = bcrypt.hashSync(password, 10);
+    await db.query(
       "INSERT INTO users (username,password) VALUES (?, ?)",
       [username, hash]
     );
@@ -72,7 +71,18 @@ const loginUser = (req, res) => {
       expiresIn: 2592000, // expires in 30 days
     }
   );
-  res.status(200).json({ auth: true, token });
+
+  res
+    .cookie("token", token, {
+      httpOnly: true,
+      sameSite: true,
+      secure: true,
+      maxAge: 2592000000,
+      path: "/",
+      domain: "localhost",
+    })
+    .status(200)
+    .json({ auth: true });
 };
 
 module.exports = {
