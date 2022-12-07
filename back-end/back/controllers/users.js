@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "12345",
+  password: process.env.DB_PASS || "",
   database: process.env.DB_NAME || "sqltietokanta",
   waitForConnections: true,
   connectionLimit: 10,
@@ -15,7 +15,7 @@ const db = mysql.createPool({
 const createUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-
+    console.log(username, password)
 
     if (!username || !password) {
       return res.status(400).send("Missing fields");
@@ -42,19 +42,20 @@ const createUser = async (req, res) => {
 };
 
 const verifyUser = async (username, password, done) => {
+  console.log(username, password)
   try {
     const [rows, fields] = await db.query(
-      "SELECT * FROM käyttäjä WHERE Käyttäjänimi = ?",
+      "SELECT * FROM users WHERE username = ?",
       [username]
     );
 
     if (rows.length > 0) {
       const user = rows[0];
-      if (bcrypt.compareSync(password, user.SalasanaSalt)) {
+      if (bcrypt.compareSync(password, user.password)) {
         return done(null, user);
       }
     }
-    
+
     done(null, false);
   } catch (error) {
     console.log(error);
@@ -63,9 +64,9 @@ const verifyUser = async (username, password, done) => {
 };
 
 const loginUser = (req, res) => {
-  // console.log(req.user);
+  //console.log(req.user);
   const token = jwt.sign(
-    { id: req.user.ID },
+    { id: req.user.id },
     process.env.JWT_SECRET || "test",
     {
       expiresIn: 2592000, // expires in 30 days

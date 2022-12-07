@@ -4,7 +4,7 @@ const { customAlphabet } = require("nanoid");
 const db = mysql.createPool({
     host: process.env.DB_HOST || "127.0.0.1",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASS || "12345",
+    password: process.env.DB_PASS || "",
     database: process.env.DB_NAME || "sqltietokanta",
     waitForConnections: true,
     connectionLimit: 10,
@@ -32,13 +32,18 @@ const getData = async (req, res) => {
 }
 
 const saveData = async (req, res) => {
-  const data1 = req.body.params.data1;
-  const table = data1.toString();
-  await db.query(
-    "INSERT INTO visuals (tables, userID, shareID) VALUES (?, ?, ?)",
-    [table, req.user.id, customAlphabet("1234567890abcdef", 10)()]
-  );
-  res.json(table);
+    const data1 = req.body.params.data1;
+    const table = data1.toString();
+    try {
+        await db.query(
+            "INSERT INTO visuals (tables, userID, shareID) VALUES (?, ?, ?)",
+            [table, req.user.id, customAlphabet("1234567890abcdef", 10)()]
+        );
+    } catch (error) {
+        console.log(error);
+    }
+
+    res.json(table);
 };
 
 const getCustomData = async (req, res) => {

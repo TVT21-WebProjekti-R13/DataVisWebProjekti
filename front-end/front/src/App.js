@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
 import './App.css'
 import Visuals from './components/Visuals';
-import Header from './components/Header';
 import Home from './components/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login';
@@ -26,7 +25,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Routes>
           <Route path="/" element={<Home setTables={setTables} />} />
           <Route path="/visuals" element={<Visuals setTables={tables} />}>

@@ -24,6 +24,7 @@ ChartJS.register(
 
 export default function Visuals(props) {
   const [chartData, setChartData] = useState();
+  const [tablestate, setTablestate] = useState([]);
   let table = [];
   const { id } = useParams();
 
@@ -42,10 +43,15 @@ export default function Visuals(props) {
       } else {
         table = props.setTables;
       }
-    } 
+    }
   }
+  function generateColor() {
 
+    let color = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")";
+    return color;
+  }
   const handleSubmit = async (e) => {
+    table = tablestate;
     e.preventDefault();
     let result = await axios.post('http://localhost:3001/data/saveData', {
       params:
@@ -75,15 +81,15 @@ export default function Visuals(props) {
     //const labels = [];
     const labels = result[0].map(row => row.time);
     const datasets = [];
-    let colors = ["rgb(252, 186, 3)", "rgb(202, 17, 200)", "rgb(102, 117, 20)", "rgb(2, 255, 20)", "rgb(2, 2, 200)", "rgb(200, 2, 2)"]
 
     for (let i = 0; i < result.length; i++) {
+      let color = generateColor();
       //labels[i] = result[i].map(row => row.time);
       datasets[i] = {
         label: table[i],
         data: result[i].map(row => row.anomaly),
-        borderColor: colors[i],
-        backgroundColor: colors[i],
+        borderColor: color,
+        backgroundColor: color,
       }
       //console.log(datasets[i]);
     }
@@ -105,18 +111,26 @@ export default function Visuals(props) {
   useEffect(() => {
     if (id) {
       getCustomData()
-      .then((data) => {
-        if (data) {
-          table = data.split(',');
-          console.log(table)
-          fetchData();
-        }
-        
-      })
-    } else {
+        .then((data) => {
+          if (data) {
+            table = data.split(',');
+            fetchData();
+            localStorage.setItem("table", table);
+          }
+
+        })
+    } else if (props.setTables) {
       getDataFromProps();
       fetchData();
+      localStorage.setItem("table", table);
+
+    } else {
+      table = localStorage.getItem("table").split(',');
+      fetchData();
+
     }
+    setTablestate(table)
+    console.log(table)
   }, []);
 
   //Set options
