@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "",
-  database: process.env.DB_NAME || "sqltietokanta",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -15,7 +15,6 @@ const db = mysql.createPool({
 const createUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log(username, password)
 
     if (!username || !password) {
       return res.status(400).send("Missing fields");
@@ -42,7 +41,6 @@ const createUser = async (req, res) => {
 };
 
 const verifyUser = async (username, password, done) => {
-  console.log(username, password)
   try {
     const [rows, fields] = await db.query(
       "SELECT * FROM users WHERE username = ?",
@@ -58,13 +56,11 @@ const verifyUser = async (username, password, done) => {
 
     done(null, false);
   } catch (error) {
-    console.log(error);
     done(error);
   }
 };
 
 const loginUser = (req, res) => {
-  //console.log(req.user);
   const token = jwt.sign(
     { id: req.user.id },
     process.env.JWT_SECRET || "test",
@@ -86,8 +82,19 @@ const loginUser = (req, res) => {
     .json({ auth: true });
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    await db.query("DELETE FROM users WHERE id = ?", [req.user.id]);
+    await db.query("DELETE FROM visuals WHERE userID = ?", [req.user.id]);
+    res.status(200).json({ message: "User deleted" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   createUser,
   verifyUser,
   loginUser,
+  deleteUser,
 };

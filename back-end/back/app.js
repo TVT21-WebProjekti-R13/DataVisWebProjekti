@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
@@ -35,7 +36,7 @@ passport.use(
         }
         return token;
       },
-      secretOrKey: process.env.JWT_SECRET || "test",
+      secretOrKey: process.env.JWT_SECRET,
     },
     (jwtPayload, done) => {
       // console.log(jwtPayload);
@@ -50,10 +51,10 @@ app.use("/users", usersRouter);
 app.use("/test", testRouter);
 
 const db = mysql.createConnection({
-  host: "127.0.0.1",
-  port: "3306",
-  user: "root",
-  password: "",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
 });
 
 db.connect(function (err) {
