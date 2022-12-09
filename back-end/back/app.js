@@ -1,65 +1,68 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');  //KAtsotaan tarviiko
-var logger = require('morgan');               //KAtsotaan tarviiko
-var cors = require('cors')
-const testRouter = require("./routes/testRouter")   //TEST
-const mysql = require('mysql')    //Miksi tätä ei ollut aiemmin : D:D: 
+const express = require("express");
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const mysql = require("mysql2");
+const passport = require("passport");
+const BasicStrategy = require("passport-http").BasicStrategy;
+const JwtStrategy = require("passport-jwt").Strategy;
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var dataRouter = require('./routes/data');
-var app = express();
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const dataRouter = require("./routes/data");
+const testRouter = require("./routes/testRouter");
 
-let PORT = process.env.PORT || 3001;
+const { verifyUser } = require("./controllers/users");
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+const app = express();
 
-app.use(logger('dev'));
+const PORT = process.env.PORT || 3001;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors())
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(helmet());
 
-app.use('/', indexRouter);
-app.use('/data', dataRouter);
-app.use('/users', usersRouter);
-app.use('/test', testRouter)      //TEST
+passport.use(new BasicStrategy(verifyUser));
+passport.use(
+  new JwtStrategy(
+    {
+      jwtFromRequest: (req) => {
+        let token = null;
+        if (req && req.cookies) {
+          token = req.cookies["token"];
+        }
+        return token;
+      },
+      secretOrKey: process.env.JWT_SECRET || "test",
+    },
+    (jwtPayload, done) => {
+      // console.log(jwtPayload);
+      return done(null, jwtPayload);
+    }
+  )
+);
+
+app.use("/", indexRouter);
+app.use("/data", dataRouter);
+app.use("/users", usersRouter);
+app.use("/test", testRouter);
 
 const db = mysql.createConnection({
   host: "127.0.0.1",
   port: "3306",
   user: "root",
-  password: "12345"
-})
-
-db.connect(function(err) {
-  if(err) throw err
-  console.log("db connected!")
-})
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+  password: "",
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+db.connect(function (err) {
+  if (err) throw err;
+  console.log("db connected!");
 });
 
 app.listen(PORT, () => {
-  console.log("Server running on port 3001");
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
