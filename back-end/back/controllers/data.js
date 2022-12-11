@@ -61,7 +61,31 @@ const getCustomData = async (req, res) => {
     }
 
 }
+const Update = async (req, res) => {
 
+    const [rows, fields] = await db.query("SELECT year,month FROM co2monthly")
+    if (rows.length > 0) {
+
+        for (let i = 0; i < rows.length; i++) {
+            let month;
+            let year;
+            let time;
+            if (rows[i].month.toString().length === 1) {
+                month = "0" + rows[i].month.toString();
+            } else {
+                month = rows[i].month.toString();
+            }
+            year = rows[i].year.toString();
+            time = year + "-" + month
+            console.log(time)
+            const [rows2, fields] = await db.query("UPDATE co2monthly SET month = ? WHERE year = ? AND month = ?", [time, rows[i].year.toString(), rows[i].month.toString()])
+        }
+
+
+
+    }
+    return res.json(rows);
+}
 // protected data example
 const getUserVisuals = async (req, res) => {
     const [rows, fields] = await db.query("SELECT shareID FROM visuals WHERE userID = ?", [req.user.id])
@@ -70,6 +94,7 @@ const getUserVisuals = async (req, res) => {
 
 module.exports = {
     getData,
+    Update,
     getUserVisuals,
     saveData,
     getCustomData,

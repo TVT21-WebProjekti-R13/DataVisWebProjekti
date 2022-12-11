@@ -22,12 +22,13 @@ axios.interceptors.response.use(
 
 function App() {
   const [tables, setTables] = useState();
+  const [scales, setScales] = useState();
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home setTables={setTables} />} />
-          <Route path="/visuals" element={<Visuals setTables={tables} />}>
+          <Route path="/" element={<Home setScales={setScales} setTables={setTables} />} />
+          <Route path="/visuals" element={<Visuals setScales={scales} setTables={tables} />}>
             <Route path=":id" element={<Visuals />} />
           </Route>
           <Route path="/login" element={<Login />} />
