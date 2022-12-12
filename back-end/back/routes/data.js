@@ -6,5 +6,5 @@ router.post("/saveData", passport.authenticate("jwt", { session: false }), saveD
 router.get("/:viewID", getData);
 router.get("/getUserVisuals", passport.authenticate("jwt", { session: false }), getUserVisuals);
 router.get("/getCustomData", getCustomData);
-
+//XD
 module.exports = router;
