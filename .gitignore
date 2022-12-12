@@ -1,7 +1,10 @@
 #back-end
 /back-end/back/node_modules
 /back-end/back/.env
+/back-end/back/.gcloudignore
 
 #front-end
 /front-end/front/node_modules
-
+/front-end/front/build
+/front-end/front/.env
+/front-end/front/.env.production
