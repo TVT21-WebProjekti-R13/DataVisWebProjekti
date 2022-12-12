@@ -1,7 +1,7 @@
 import React from "react";
 import { Chart } from "chart.js/auto";
 import "chartjs-adapter-luxon";
-import { Line } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import { useState } from "react";
 
 export default function Visualsnew({ chart }) {
@@ -32,15 +32,18 @@ export default function Visualsnew({ chart }) {
     } else if (dataset.label === "v10") {
       dataset.yAxisID = "temperature";
       dataset.showLine = false;
+      dataset.pointRadius = 10;
     }
   });
+
+    
 
   const options = {
     responsive: true,
     scales: {},
     elements: {
       point: {
-        radius: 5,
+        radius: 0,
       },
     },
     plugins: {
@@ -54,7 +57,7 @@ export default function Visualsnew({ chart }) {
     },
   };
 
-  if (data.datasets.some((dataset) => dataset.label === "vostokco2" || dataset.label === "v6")) {
+  if (data.datasets.some((dataset) => dataset.label === "v5" || dataset.label === "v6")) {
     options.scales = {};
   } else if (data.datasets.some((dataset) => dataset.label === "v7c1")) {
     options.scales = {
@@ -81,11 +84,15 @@ export default function Visualsnew({ chart }) {
       x: {
         type: "time",
         time: {
-          unit: "year",
+          unit: "month",
         },
       },
     };
   }
+
+  console.log(data)
+  console.log(options)
+  
 
   return (
     <div>
