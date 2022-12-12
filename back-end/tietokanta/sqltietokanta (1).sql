@@ -16,28 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `description`
+-- Table structure for table `descriptions`
 --
 
-DROP TABLE IF EXISTS `description`;
+DROP TABLE IF EXISTS `descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `description` (
-  `visualisointi` varchar(3) COLLATE utf8mb4_bin DEFAULT NULL,
-  `datalinkki` varchar(1028) COLLATE utf8mb4_bin DEFAULT NULL,
-  `kuvauslinkki` varchar(1028) COLLATE utf8mb4_bin DEFAULT NULL,
-  `kuvaus` varchar(2056) COLLATE utf8mb4_bin DEFAULT NULL
+CREATE TABLE `descriptions` (
+  `vis` text COLLATE utf8mb4_bin,
+  `datalink` text COLLATE utf8mb4_bin,
+  `desclink` text COLLATE utf8mb4_bin,
+  `desc` text COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `description`
+-- Dumping data for table `descriptions`
 --
 
-LOCK TABLES `description` WRITE;
-/*!40000 ALTER TABLE `description` DISABLE KEYS */;
-INSERT INTO `description` VALUES ('vis','data linkki','kuvaus linkki','kuvaus'),('V1','https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','L?mp?tila ilmi?iden rekonstruktio'),('V2','https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen apllonpuoliskon l?mp?tilahistorian rekonstruktio'),('V3','https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksiidi mittaukset Mauna Loa asemalta');
-/*!40000 ALTER TABLE `description` ENABLE KEYS */;
+LOCK TABLES `descriptions` WRITE;
+/*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
+INSERT INTO `descriptions` VALUES ('V1','https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','Lämpötilailmiöiden rekonstruktio'),('V2','https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),('V3','https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksidimittaukset Mauna Loan asemalta'),('V4','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidipitoisuudet etelämantereen jääporaus näytteistä'),('V5','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jääporausnäytteistä'),('V6','https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jääporausnäytteistä'),('V7','http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),('V8','https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),('V9','https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain'),('V10','https://www.southampton.ac.uk/~cpd/history.html',' ','Ilmaston kehitykseen vaikuttavia ihmisen evoluution tapahtumia');
+/*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -849,4 +849,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-12 19:16:32
+-- Dump completed on 2022-12-12 19:34:52
