@@ -47,9 +47,10 @@ const getData = async (req, res) => {
 const saveData = async (req, res) => {
     const data1 = req.body.params.data1;
     const table = data1.toString();
+    console.log(table)
     try {
         await db.query(
-            "INSERT INTO visuals (tables, userID, shareID) VALUES (?, ?, ?)",
+            "INSERT INTO views (visuals, owner, viewID) VALUES (?, ?, ?)",
             [table, req.user.id, customAlphabet("1234567890abcdef", 10)()]
         );
     } catch (error) {
@@ -58,7 +59,20 @@ const saveData = async (req, res) => {
 
     res.json(table);
 };
+const Update = async (req, res) => {
+    //let country;
+    //let anomaly;
+    //const [rows, fields] = await db.query("SELECT * FROM v8")
+    //const [rows, fields] = await db.query("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'v8' ORDER BY ORDINAL_POSITION");
+    //for (let i = 0; i < rows.length; i++) {
+    //  if (rows[i].COLUMN_NAME !== "time") {
+    //    country = rows[i].COLUMN_NAME;
+    //}
+    //console.log(country)
+    //}
 
+    //return res.json(rows);
+}
 const getCustomData = async (req, res) => {
     try {
         if (req.query.shareID == null) {
@@ -77,15 +91,22 @@ const getCustomData = async (req, res) => {
 
 // protected data example
 const getUserVisuals = async (req, res) => {
-    const [rows, fields] = await db.query("SELECT shareID FROM visuals WHERE userID = ?", [req.user.id])
+    const [rows, fields] = await db.query("SELECT viewID FROM views WHERE owner = ?", [req.user.id])
     res.json(rows);
 };
 
-
+const deleteVisual = async (req, res) => {
+    const data = req.body.params.data1;
+    console.log(data)
+    const [rows2, fields2] = await db.query("DELETE FROM views WHERE viewID = ?", [data])
+    res.json(data);
+};
 
 module.exports = {
     getData,
     getUserVisuals,
     saveData,
     getCustomData,
+    deleteVisual,
+    Update,
 };
