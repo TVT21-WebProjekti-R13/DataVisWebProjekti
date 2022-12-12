@@ -1,7 +1,8 @@
-node_modules
-src
-public
+/node_modules
+/src
+/public
 .git
 .gitignore
 .env
 .env.production
+README.md
