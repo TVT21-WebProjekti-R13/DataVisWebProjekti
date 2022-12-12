@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import VisualsNew from "./VisualsNew";
+import { VisualsV8 } from "./VisualsV8";
 
 export default function ViewPage() {
   const { viewID } = useParams();
@@ -19,9 +20,19 @@ export default function ViewPage() {
     });
   }, []);
 
+
+
+
   return (
     <div>
       {chartData.map((chart) => {
+          if (chart.visual_name === "v8") {
+            return (
+              <div>
+                <VisualsV8 key={chart.visual_name} chart={chart} />
+              </div>
+            )
+          }
         return <VisualsNew key={chart.visual_name} chart={chart} />;
       })}
     </div>
