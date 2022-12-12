@@ -1,11 +1,11 @@
-# Pääotsikko
+# DataVis
 
 ### Kuvaus
-Full-stack web projekti datan visualisoinnille esimääritetyistä datanlähteistä.
+Full-stack-webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. //TODO
 
-Datana toimii useita tieteellisiä tuktkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksiidi pitoisuuksista, sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
+Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidipitoisuuksista sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
 
-Käyttäjän on tarkoitus voida luoda oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja, sekä jakaa visualisointejaan muille lin. Visualisointien katsominen ei tarvitse käyttäjän luomista.
+Käyttäjän on tarkoitus voida luoda oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei tarvitse käyttäjän luomista. //TODO
 
 Projektissa käytetyt teknologiat:
 Front-end:
@@ -17,7 +17,7 @@ Back-end:
 [Express](https://expressjs.com/)
 
 Tietokanta:
-[MySql](https://www.mysql.com/)
+[MySQL](https://www.mysql.com/)
 
 
 ### Projektin jäsenet
@@ -31,11 +31,10 @@ Fullstack
 Fullstack
 
 ### Sovelluksen arkkitehtuuri
-Selaimessa esitettävä react sovellus kutsuu palvelimen rajapintaa käyttäjän, datan ja visualisointien hakemiseksi.
-Palvelimella NodeJS vastaa sovelluksen http pyyntöihin, sekä hakee pyydettäessä tietokannasta dataa.
-Tietokanta yksinkertainen relaatiotietokanta.
-kaikki osat pyöriävt Google Cloud Service alustalla omina osinaan.
+Selaimessa esitettävä React-sovellus kutsuu palvelimen rajapintaa käyttäjän, datan ja visualisointien hakemiseksi. Palvelimella NodeJS vastaa sovelluksen HTTP-pyyntöihin sekä hakee pyydettäessä tietokannasta dataa. Tietokantana on yksinkertainen relaatiotietokanta. Kaikki osat pyörivät Google Cloud Service -alustalla omina osinaan.
 
 ### Linkki sovellukseen
 
+
+### Linkki esittelyvideoon
 
