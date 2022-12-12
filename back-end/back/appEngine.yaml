@@ -1,0 +1,4 @@
+runtime: nodejs18
+service: dataVisServer
+env_variables:
+  GAE_DB_SOCKET: "/cloudsql/logical-codex-367210:europe-north1:web-projekti-sql-tietokanta"

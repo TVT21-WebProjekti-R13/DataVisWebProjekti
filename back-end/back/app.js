@@ -51,10 +51,11 @@ app.use("/users", usersRouter);
 app.use("/test", testRouter);
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
+  //host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
+  socketPath: process.env.GAE_DB_SOCKET
 });
 
 db.connect(function (err) {
