@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `sqltietokanta` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sqltietokanta`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sqltietokanta
@@ -16,6 +14,31 @@ USE `sqltietokanta`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `description`
+--
+
+DROP TABLE IF EXISTS `description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `description` (
+  `visualisointi` varchar(3) DEFAULT NULL,
+  `datalinkki` varchar(1028) DEFAULT NULL,
+  `kuvauslinkki` varchar(1028) DEFAULT NULL,
+  `kuvaus` varchar(2056) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `description`
+--
+
+LOCK TABLES `description` WRITE;
+/*!40000 ALTER TABLE `description` DISABLE KEYS */;
+INSERT INTO `description` VALUES ('vis','data linkki','kuvaus linkki','kuvaus'),('V1','https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','L?mp?tila ilmi?iden rekonstruktio'),('V2','https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen apllonpuoliskon l?mp?tilahistorian rekonstruktio'),('V3','https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksiidi mittaukset Mauna Loa asemalta');
+/*!40000 ALTER TABLE `description` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `käyttäjä`
@@ -820,4 +843,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-12  3:06:06
+-- Dump completed on 2022-12-12 15:18:38
