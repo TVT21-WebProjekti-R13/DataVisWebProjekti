@@ -12,23 +12,36 @@ const db = mysql.createPool({
 });
 
 const getData = async (req, res) => {
+    const { viewID } = req.params;
+    const [rows, fields] = await db.query("SELECT * FROM views WHERE viewID = ?", [viewID]);
 
-    const { data1 } = req.query
-    const table = data1
-    let results = [];
-    if (table) {
-        for (let i = 0; i < table.length; i++) {
-            const query = "SELECT * FROM " + table[i];
-            if (table[i] == "users") {
-                results = "Sormi sanoo soosoo!";
-            }
-            const [rows, fields] = await db.execute(query);
-            if (rows.length > 0) {
-                results[i] = rows;
-            }
-        }
-    }
-    res.json(results);
+    const visuals = rows[0].visuals;
+    const visualsArray = visuals.split(",");
+
+    const visualsData = await Promise.all(visualsArray.map(async (visual) => {
+        const [rows, fields] = await db.query("SELECT * FROM visuals WHERE visual_name = ?", [visual]);
+        return rows[0];
+    }));
+
+    const tableArray = visualsData.map((visual) => {
+        const table = visual.tables;
+        const tableArray = table.split(",");
+        return tableArray;
+    });
+
+    const tables = await Promise.all(tableArray.map(async (table) => {
+        const data = await Promise.all(table.map(async (table) => {
+            const [rows, fields] = await db.query("SELECT * FROM " + table);
+            return rows;
+        }));
+        return data
+    }));
+
+    visualsData.map((visual, index) => {
+        visual.data = tables[index];
+    });
+
+    res.json(visualsData);
 }
 
 const saveData = async (req, res) => {
@@ -67,6 +80,8 @@ const getUserVisuals = async (req, res) => {
     const [rows, fields] = await db.query("SELECT shareID FROM visuals WHERE userID = ?", [req.user.id])
     res.json(rows);
 };
+
+
 
 module.exports = {
     getData,

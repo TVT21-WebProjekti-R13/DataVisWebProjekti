@@ -5,6 +5,7 @@ import Home from './components/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login';
 import axios from 'axios';
+import ViewPage from './components/ViewPage';
 
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
@@ -21,15 +22,13 @@ axios.interceptors.response.use(
 );
 
 function App() {
-  const [tables, setTables] = useState();
+
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home setTables={setTables} />} />
-          <Route path="/visuals" element={<Visuals setTables={tables} />}>
-            <Route path=":id" element={<Visuals />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/view/:viewID" element={<ViewPage />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
