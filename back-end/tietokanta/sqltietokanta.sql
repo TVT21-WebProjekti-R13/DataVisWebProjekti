@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `sqltietokanta2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sqltietokanta2`;
+CREATE DATABASE  IF NOT EXISTS `sqltietokanta` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sqltietokanta`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sqltietokanta2
+-- Host: 127.0.0.1    Database: sqltietokanta
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -76,7 +76,7 @@ DROP TABLE IF EXISTS `v10`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `v10` (
   `time` int DEFAULT NULL,
-  `anomaly` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+  `anomaly` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
