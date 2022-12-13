@@ -8,6 +8,7 @@ import ViewPage from './components/views/ViewPage';
 import Navbar from './components/Navbar'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+console.log(process.env);
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (response) => {

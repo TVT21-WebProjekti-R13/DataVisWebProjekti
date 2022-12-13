@@ -9,7 +9,7 @@ import FormControl from '@mui/material/FormControl';
 export const CreateView = ({ userVisuals, setUserVisuals }) => {
   const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     const selectedVisuals = []
     visuals.forEach((visual) => {
