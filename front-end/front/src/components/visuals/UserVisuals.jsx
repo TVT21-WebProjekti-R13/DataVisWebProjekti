@@ -21,7 +21,7 @@ export default function UserVisuals() {
 
   return (
     <div>
-      <h1>Sinun näkymät</h1>
+      <h1 class="container" style={{color: 'white',}}>Sinun näkymät</h1>
       <table>
         <tbody>
           <tr>

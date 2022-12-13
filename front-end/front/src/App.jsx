@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login';
 import axios from 'axios';
 import ViewPage from './components/views/ViewPage';
+import Navbar from './components/Navbar'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
@@ -22,8 +23,10 @@ axios.interceptors.response.use(
 
 function App() {
   return (
+    <body  id="homebg">
     <BrowserRouter>
       <div className="App">
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/view/:viewID" element={<ViewPage />} />
@@ -31,6 +34,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </body>
   );
 }
 export default App;
