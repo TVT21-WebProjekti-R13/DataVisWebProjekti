@@ -7,7 +7,7 @@ import Login from './components/Login';
 import axios from 'axios';
 import ViewPage from './components/ViewPage';
 
-axios.defaults.baseURL = process.env.REACT_APP_ADDRESS;
+axios.defaults.baseURL = /*process.env.REACT_APP_ADDRESS;*/ "http://localhost:3001"
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (response) => {

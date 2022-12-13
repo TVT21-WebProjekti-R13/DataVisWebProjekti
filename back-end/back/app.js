@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({ origin: process.env.GAE_DB_SOCKET, credentials: true }));
+app.use(cors({ origin: /*process.env.GAE_DB_SOCKET*/ process.env.PORT, credentials: true }));
 app.use(helmet());
 
 passport.use(new BasicStrategy(verifyUser));
@@ -51,11 +51,10 @@ app.use("/users", usersRouter);
 app.use("/test", testRouter);
 
 const db = mysql.createConnection({
-  //host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  socketPath: process.env.GAE_DB_SOCKET
+  host: process.env.DB_HOST || process.env.GAE_DB_SOCKET
 });
 
 db.connect(function (err) {
