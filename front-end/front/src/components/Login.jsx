@@ -61,7 +61,7 @@ const Login = () => {
         <TextField id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} />
         <br/>
         <br/>
-        <TextField type="password" id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+        <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
         <br/>
         <br/>
         <Button variant="contained" type="submit">Sign Up</Button>

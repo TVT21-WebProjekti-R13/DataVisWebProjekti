@@ -9,7 +9,7 @@ import FormControl from '@mui/material/FormControl';
 export const CreateView = () => {
   const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     const selectedVisuals = []
     visuals.forEach((visual) => {
@@ -18,7 +18,7 @@ export const CreateView = () => {
       }
     })
     console.log(selectedVisuals);
-    axios.post('/data/saveData', { selectedVisuals })
+    await axios.post('/data/saveData', { selectedVisuals })
   }
 
   return (
