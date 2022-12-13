@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login';
 import axios from 'axios';
 import ViewPage from './components/views/ViewPage';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import MuiNavBar from './components/MuiNavBar';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 console.log(process.env);
@@ -27,7 +28,7 @@ function App() {
     <body  id="homebg">
     <BrowserRouter>
       <div className="App">
-        <Navbar/>
+        <MuiNavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/view/:viewID" element={<ViewPage />} />
