@@ -17,12 +17,12 @@ const { verifyUser } = require("./controllers/users");
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({ origin: /*process.env.GAE_DB_SOCKET*/ process.env.PORT, credentials: true }));
+app.use(cors({origin: process.env.FRONT_URL, credentials: true}));
 app.use(helmet());
 
 passport.use(new BasicStrategy(verifyUser));
