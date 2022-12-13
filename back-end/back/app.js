@@ -21,7 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(cors({ origin: process.env.FRONT_URL, credentials: true}))
+//app.use(cors({ origin: process.env.FRONT_URL, credentials: true}))
+//app.use(cors({ origin: "storage.googleapis.com/logical-codex-367210.appspot.com"}))
+//app.options('*', cors())
+app.use(function(req, res, next) {
+  res.header("Access-Control-allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"),
+  next()
+})
+
 app.use(helmet());
 
 passport.use(new BasicStrategy(verifyUser));

@@ -11,7 +11,7 @@ export default function ViewPage() {
   const [chartData, setChartData] = useState([]);
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/data/${viewID}`);
+    const { data } = await axios.get(process.env.REACT_APP_API_URL + `/data/${viewID}`);
     return data;
   };
 
