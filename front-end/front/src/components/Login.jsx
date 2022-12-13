@@ -5,20 +5,29 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleLogin = (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     const user = { username, password };
-    axios.post("/users/login", null, { auth: user }).then((res) => {
-      console.log(res.data);
-    });
+    await axios.post("/users/login", null, { auth: user });
     navigate("/");
   };
-  const handleSignup = (e) => {
+
+  const handleSignup = async (e) => {
     e.preventDefault();
-    axios.post("/users/create", { username, password }).then((res) => {
-      console.log(res.data);
-    });
+    await axios.post("/users/create", { username, password });
   };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await axios.delete("/users/delete");
+  };
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await axios.post("/users/logout");
+  };
+
   return (
     <>
       <div>Login</div>
@@ -37,6 +46,12 @@ const Login = () => {
         <input type="password" onChange={(e) => setPassword(e.target.value)} />
         <button type="submit">Sign Up</button>
       </form>
+      <div>
+        <button onClick={(e) => {handleDelete(e)}}>Poista käyttäjäsi</button>
+      </div>
+      <div>
+        <button onClick={(e) => {handleLogout(e)}}>Kirjaudu ulos</button>
+      </div>
     </>
   );
 };

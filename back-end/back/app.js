@@ -8,10 +8,8 @@ const passport = require("passport");
 const BasicStrategy = require("passport-http").BasicStrategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 
-const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const dataRouter = require("./routes/data");
-const testRouter = require("./routes/testRouter");
 
 const { verifyUser } = require("./controllers/users");
 
@@ -45,10 +43,8 @@ passport.use(
   )
 );
 
-app.use("/", indexRouter);
 app.use("/data", dataRouter);
 app.use("/users", usersRouter);
-app.use("/test", testRouter);
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,

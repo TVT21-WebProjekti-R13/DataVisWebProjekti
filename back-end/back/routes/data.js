@@ -6,6 +6,6 @@ router.post("/saveData", passport.authenticate("jwt", { session: false }), saveD
 router.get("/getUserVisuals", passport.authenticate("jwt", { session: false }), getUserVisuals);
 router.get("/getCustomData", getCustomData);
 router.get("/update", Update);
-router.post("/deleteVisual", deleteVisual);
+router.delete("/deleteVisual/:viewID", passport.authenticate("jwt", { session: false }), deleteVisual);
 router.get("/:viewID", getData);
 module.exports = router;

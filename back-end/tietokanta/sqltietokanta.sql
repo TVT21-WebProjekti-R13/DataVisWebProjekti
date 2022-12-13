@@ -806,7 +806,9 @@ CREATE TABLE `views` (
 
 LOCK TABLES `views` WRITE;
 /*!40000 ALTER TABLE `views` DISABLE KEYS */;
-INSERT INTO `views` VALUES (1,'v1v2,v3v4,v5,v6,v7',14,'temperaturedata');
+INSERT INTO `views` (`id`, `visuals`, `owner`, `viewID`) VALUES
+(1, 'v1v2,v3v4,v5,v6,v7', -1, 'temperaturedata'),
+(2, 'v8,v9', -1, 'emissionsources');
 /*!40000 ALTER TABLE `views` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -832,7 +834,14 @@ CREATE TABLE `visuals` (
 
 LOCK TABLES `visuals` WRITE;
 /*!40000 ALTER TABLE `visuals` DISABLE KEYS */;
-INSERT INTO `visuals` VALUES (8,'v1v2','v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly',''),(9,'v3v4','v3annual,v3monthly,v4,v4de2,v4dss',''),(10,'v5','v5',''),(11,'v6','v6',''),(12,'v7','v7a1,v7c1,v10','');
+INSERT INTO `visuals` (`id`, `visual_name`, `tables`, `options`) VALUES
+(8, 'v1v2', 'v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly', ''),
+(9, 'v3v4', 'v3annual,v3monthly,v4,v4de2,v4dss', ''),
+(10, 'v5', 'v5', ''),
+(11, 'v6', 'v6', ''),
+(12, 'v7', 'v7a1,v7c1,v10', ''),
+(13, 'v8', 'v8', ''),
+(14, 'v9', 'v9byindustry,v9bysector,v9bysubsector', '');
 /*!40000 ALTER TABLE `visuals` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

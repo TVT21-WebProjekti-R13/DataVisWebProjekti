@@ -85,11 +85,15 @@ const loginUser = (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     await db.query("DELETE FROM users WHERE id = ?", [req.user.id]);
-    await db.query("DELETE FROM visuals WHERE userID = ?", [req.user.id]);
-    res.status(200).json({ message: "User deleted" });
+    await db.query("DELETE FROM views WHERE owner = ?", [req.user.id]);
+    res.status(200).clearCookie("token").json({ message: "User deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+const logoutUser = (req, res) => {
+  res.clearCookie("token").status(200).json({ auth: false });
 }
 
 module.exports = {
@@ -97,4 +101,5 @@ module.exports = {
   verifyUser,
   loginUser,
   deleteUser,
+  logoutUser,
 };

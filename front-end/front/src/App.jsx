@@ -1,13 +1,12 @@
 import { React, useState } from 'react'
 import './App.css'
-import Visuals from './components/Visuals';
 import Home from './components/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login';
 import axios from 'axios';
-import ViewPage from './components/ViewPage';
+import ViewPage from './components/views/ViewPage';
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (response) => {
@@ -22,7 +21,6 @@ axios.interceptors.response.use(
 );
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">

@@ -45,20 +45,18 @@ const getData = async (req, res) => {
 }
 
 const saveData = async (req, res) => {
-    const data1 = req.body.params.data1;
-    const table = data1.toString();
-    console.log(table)
+    const { selectedVisuals } = req.body;
     try {
         await db.query(
             "INSERT INTO views (visuals, owner, viewID) VALUES (?, ?, ?)",
-            [table, req.user.id, customAlphabet("1234567890abcdef", 10)()]
+            [selectedVisuals.toString(), req.user.id, customAlphabet("1234567890abcdef", 10)()]
         );
     } catch (error) {
         console.log(error);
     }
-
-    res.json(table);
+    res.status(200).json({ message: "success" });
 };
+
 const Update = async (req, res) => {
     //let country;
     //let anomaly;
@@ -89,17 +87,20 @@ const getCustomData = async (req, res) => {
 
 }
 
-// protected data example
 const getUserVisuals = async (req, res) => {
     const [rows, fields] = await db.query("SELECT viewID FROM views WHERE owner = ?", [req.user.id])
     res.json(rows);
 };
 
 const deleteVisual = async (req, res) => {
-    const data = req.body.params.data1;
-    console.log(data)
-    const [rows2, fields2] = await db.query("DELETE FROM views WHERE viewID = ?", [data])
-    res.json(data);
+  try {
+    const { viewID } = req.params;
+    await db.query("DELETE FROM views WHERE viewID = ? AND owner = ?", [viewID, req.user.id]);
+    res.status(200).json({ message: "success" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 module.exports = {
