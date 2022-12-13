@@ -2,9 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
-export default function UserVisuals() {
-  const [userVisuals, setUserVisuals] = useState([]);
-
+export default function UserVisuals({ userVisuals, setUserVisuals}) {
   useEffect(() => {
     async function getVisuals() {
       const { data } = await axios.get("/data/getUserVisuals");
