@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 
-export const CreateView = () => {
+export const CreateView = ({ userVisuals, setUserVisuals }) => {
   const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
 
   const handleSubmit = async(e) => {
@@ -18,7 +18,9 @@ export const CreateView = () => {
       }
     })
     console.log(selectedVisuals);
-    await axios.post('/data/saveData', { selectedVisuals })
+    axios.post('/data/saveData', { selectedVisuals }).then((res) => {
+      setUserVisuals([...userVisuals, res.data])
+    });
   }
 
   return (

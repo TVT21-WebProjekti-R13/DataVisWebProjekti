@@ -6,9 +6,7 @@ import UserStyles from './UserStyles.css';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
-export default function UserVisuals() {
-  const [userVisuals, setUserVisuals] = useState([]);
-
+export default function UserVisuals({ userVisuals, setUserVisuals}) {
   useEffect(() => {
     async function getVisuals() {
       const { data } = await axios.get("/data/getUserVisuals");
