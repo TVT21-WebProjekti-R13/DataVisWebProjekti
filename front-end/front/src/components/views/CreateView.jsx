@@ -7,7 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 
 export const CreateView = ({ userVisuals, setUserVisuals }) => {
-  const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
+  const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8", "v9"]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
