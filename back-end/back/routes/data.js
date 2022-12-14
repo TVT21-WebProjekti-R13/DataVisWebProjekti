@@ -1,0 +1,11 @@
+const express = require('express');
+const passport = require("passport");
+const router = express.Router();
+const { getData, getUserVisuals, saveData, getCustomData, deleteVisual, Update } = require("../controllers/data");
+router.post("/saveData", passport.authenticate("jwt", { session: false }), saveData);
+router.get("/getUserVisuals", passport.authenticate("jwt", { session: false }), getUserVisuals);
+router.get("/getCustomData", getCustomData);
+router.get("/update", Update);
+router.delete("/deleteVisual/:viewID", passport.authenticate("jwt", { session: false }), deleteVisual);
+router.get("/:viewID", getData);
+module.exports = router;
