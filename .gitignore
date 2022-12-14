@@ -1,0 +1,14 @@
+#front-end
+front-end/front/.env
+front-end/front/.env.production
+front-end/front/.env.*
+front-end/front/.gcloudignore
+front-end/front/node_modules
+front-end/front/build
+front-end/front/clientAppEngine.yaml
+
+#back-end
+back-end/back/.env
+back-end/back/.gcloudignore
+back-end/back/node_modules
+back-end/back/serverAppEngine.yaml

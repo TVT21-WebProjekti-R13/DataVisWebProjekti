@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `sqltietokanta` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sqltietokanta`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sqltietokanta
@@ -25,7 +23,6 @@ DROP TABLE IF EXISTS `descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `descriptions` (
-  `vis` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `datalink` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `desclink` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
@@ -38,7 +35,7 @@ CREATE TABLE `descriptions` (
 
 LOCK TABLES `descriptions` WRITE;
 /*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
-INSERT INTO `descriptions` VALUES ('V1','https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','Lämpötilailmiöiden rekonstruktio'),('V2','https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),('V3','https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksidimittaukset Mauna Loan asemalta'),('V4','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidipitoisuudet etelämantereen jääporaus näytteistä'),('V5','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jääporausnäytteistä'),('V6','https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jääporausnäytteistä'),('V7','http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),('V8','https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),('V9','https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain'),('V10','https://www.southampton.ac.uk/~cpd/history.html',' ','Ilmaston kehitykseen vaikuttavia ihmisen evoluution tapahtumia');
+INSERT INTO `descriptions` VALUES ('https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','Lämpötilailmiöiden rekonstruktio'),('https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),('https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksidimittaukset Mauna Loan asemalta'),('https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidipitoisuudet etelämantereen jääporaus näytteistä'),('https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jääporausnäytteistä'),('https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jääporausnäytteistä'),('http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),('https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),('https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain'),('https://www.southampton.ac.uk/~cpd/history.html',' ','Ilmaston kehitykseen vaikuttavia ihmisen evoluution tapahtumia');
 /*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,8 +48,8 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -76,7 +73,8 @@ DROP TABLE IF EXISTS `v10`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `v10` (
   `time` int DEFAULT NULL,
-  `anomaly` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
+  `info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `anomaly` int NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,7 +84,7 @@ CREATE TABLE `v10` (
 
 LOCK TABLES `v10` WRITE;
 /*!40000 ALTER TABLE `v10` DISABLE KEYS */;
-INSERT INTO `v10` VALUES (-169050,'earliest record of fire technology, by Neanderthals: boxwood digging sticks with shafts worked smooth by controlled burning (Poggetti Vecchi, Italy)'),(-63050,'rapid colonisation of Australia by humans during 5,000 years (ancient Sahul): maritime exploration; transecting the continent along superhighways'),(-48050,'Neanderthal fire-lighting technology (France): striking flint axes with mineral pyrite ? wood the predominant fuel for cooking and heating until the CE 19?? century'),(-30050,'possible first human incursions into the Americas (Mexico), certainly within the next 11,000 years (New Mexico), migrating along the coast from Siberia?'),(-13050,'colonisation and occupation of North America by humans, from northeastern Siberia over the Bering land bridge, bringing their dogs'),(-9550,'cultivation of wild barley and oats around village settlements (Fertile Crescent) ? dawn of farming on the Anatolian peninsula; storable grains sustaining population growth'),(-7050,'domestication of pigs (Anatolia and China) ? meat, hide, bristles, medical research and capital from 1.0 billion pigs by CE 2015: peak production?'),(-5950,'start of the Copper Age (Fertile Crescent), spread of copper smelting for weapons and tools'),(-3550,'earliest engineering of water delivery and storage, for people, animals and irrigation (Jawa, Jordan) ? landscape engineering of dams, levees, ditches in China by 3100 BCE'),(-2050,'earliest use of coal as fuel (Inner Mongolia and Shanxi, China), for smelting copper, cooking, heating ? peak global coal production of 8.2 billion tonnes/year in CE 2013?'),(-1100,'start of the Iron Age (Aegean; Britain by 800 BCE), iron replacing bronze for tools and weapons'),(-400,'political theory of social welfare (Aristotle, Greece): a state tax on assets of affluent citizens for distribution amongst the poor'),(200,'firing of natural gas in southwest China, to boil brine for salt (Bowu zhi c. 290), and to pipe into homes for lighting (Huayang Guo Zhi c. 340) ? 3.9 trillion m³/year of global gas extraction by 2018 and rising'),(450,'crop failures across the northern hemisphere caused by volcanic eruptions in Iceland; then bubonic plague (536-547) ? century of economic stagnation'),(1134,'rise of the Mongol Empire connecting the Pacific to the Mediterranean, founded by Genghis Khan; recounted by Marco Polo c. 1300 ? 35 million male-line descendants of Genghis Khan across modern Asia'),(1274,'bubonic plague caused by the Black Death bacillus Yersinia pestis kills a third of the human population across much of Europe, 1346-53; originating in Kyrgyzstan or the Himalayas, transmitted by rats and their fleas'),(1702,'vaccination with an attenuated pathogen: cowpox to treat smallpox (Benjamin Jesty, Britain, 1774; Edward Jenner, Britain, 1798) ? artificial attenuation by 1881; vaccination programmes save more lives than any other medical intervention in history');
+INSERT INTO `v10` VALUES (-169050,'earliest record of fire technology, by Neanderthals: boxwood digging sticks with shafts worked smooth by controlled burning (Poggetti Vecchi, Italy)',2),(-63050,'rapid colonisation of Australia by humans during 5,000 years (ancient Sahul): maritime exploration; transecting the continent along superhighways',2),(-48050,'Neanderthal fire-lighting technology (France): striking flint axes with mineral pyrite ? wood the predominant fuel for cooking and heating until the CE 19?? century',2),(-30050,'possible first human incursions into the Americas (Mexico), certainly within the next 11,000 years (New Mexico), migrating along the coast from Siberia?',2),(-13050,'colonisation and occupation of North America by humans, from northeastern Siberia over the Bering land bridge, bringing their dogs',2),(-9550,'cultivation of wild barley and oats around village settlements (Fertile Crescent) ? dawn of farming on the Anatolian peninsula; storable grains sustaining population growth',2),(-7050,'domestication of pigs (Anatolia and China) ? meat, hide, bristles, medical research and capital from 1.0 billion pigs by CE 2015: peak production?',2),(-5950,'start of the Copper Age (Fertile Crescent), spread of copper smelting for weapons and tools',2),(-3550,'earliest engineering of water delivery and storage, for people, animals and irrigation (Jawa, Jordan) ? landscape engineering of dams, levees, ditches in China by 3100 BCE',2),(-2050,'earliest use of coal as fuel (Inner Mongolia and Shanxi, China), for smelting copper, cooking, heating ? peak global coal production of 8.2 billion tonnes/year in CE 2013?',2),(-1100,'start of the Iron Age (Aegean; Britain by 800 BCE), iron replacing bronze for tools and weapons',2),(-400,'political theory of social welfare (Aristotle, Greece): a state tax on assets of affluent citizens for distribution amongst the poor',2),(200,'firing of natural gas in southwest China, to boil brine for salt (Bowu zhi c. 290), and to pipe into homes for lighting (Huayang Guo Zhi c. 340) ? 3.9 trillion m³/year of global gas extraction by 2018 and rising',2),(450,'crop failures across the northern hemisphere caused by volcanic eruptions in Iceland; then bubonic plague (536-547) ? century of economic stagnation',2),(1134,'rise of the Mongol Empire connecting the Pacific to the Mediterranean, founded by Genghis Khan; recounted by Marco Polo c. 1300 ? 35 million male-line descendants of Genghis Khan across modern Asia',2),(1274,'bubonic plague caused by the Black Death bacillus Yersinia pestis kills a third of the human population across much of Europe, 1346-53; originating in Kyrgyzstan or the Himalayas, transmitted by rats and their fleas',2),(1702,'vaccination with an attenuated pathogen: cowpox to treat smallpox (Benjamin Jesty, Britain, 1774; Edward Jenner, Britain, 1798) ? artificial attenuation by 1881; vaccination programmes save more lives than any other medical intervention in history',2);
 /*!40000 ALTER TABLE `v10` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -797,7 +795,7 @@ CREATE TABLE `views` (
   `owner` int NOT NULL,
   `viewID` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -806,9 +804,7 @@ CREATE TABLE `views` (
 
 LOCK TABLES `views` WRITE;
 /*!40000 ALTER TABLE `views` DISABLE KEYS */;
-INSERT INTO `views` (`id`, `visuals`, `owner`, `viewID`) VALUES
-(1, 'v1v2,v3v4,v5,v6,v7', -1, 'temperaturedata'),
-(2, 'v8,v9', -1, 'emissionsources');
+INSERT INTO `views` VALUES (1,'v1v2,v3v4,v5,v6,v7',-1,'temperaturedata'),(2,'v8,v9',-1,'emissionsources');
 /*!40000 ALTER TABLE `views` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -824,8 +820,11 @@ CREATE TABLE `visuals` (
   `visual_name` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `tables` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `datalink` text COLLATE utf8mb4_bin NOT NULL,
+  `desclink` text COLLATE utf8mb4_bin NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -834,14 +833,7 @@ CREATE TABLE `visuals` (
 
 LOCK TABLES `visuals` WRITE;
 /*!40000 ALTER TABLE `visuals` DISABLE KEYS */;
-INSERT INTO `visuals` (`id`, `visual_name`, `tables`, `options`) VALUES
-(8, 'v1v2', 'v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly', ''),
-(9, 'v3v4', 'v3annual,v3monthly,v4,v4de2,v4dss', ''),
-(10, 'v5', 'v5', ''),
-(11, 'v6', 'v6', ''),
-(12, 'v7', 'v7a1,v7c1,v10', ''),
-(13, 'v8', 'v8', ''),
-(14, 'v9', 'v9byindustry,v9bysector,v9bysubsector', '');
+INSERT INTO `visuals` VALUES (8,'v1v2','v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly','','https://www.metoffice.gov.uk/hadobs/hadcrut5, https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt',' ,https://www.nature.com/articles/nature03265','Lämpötilailmiöiden rekonstruktio, Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),(9,'v3v4','v3annual,v3monthly,v4,v4de2,v4dss','','https://gml.noaa.gov/ccgg/trends/, https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://gml.noaa.gov/ccgg/about/co2_measurements.html, https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidimittaukset Mauna Loan asemalta, Hiilidioksidipitoisuudet etelämantereen jäänporaus näytteistä'),(10,'v5','v5','','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jäänporausnäytteistä'),(11,'v6','v6','','https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jäänporausnäytteistä'),(12,'v7','v7a1,v7c1,v10','','http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),(13,'v8','v8','','https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),(14,'v9','v9byindustry,v9bysector,v9bysubsector','','https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain');
 /*!40000 ALTER TABLE `visuals` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -854,4 +846,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-12 23:24:18
+-- Dump completed on 2022-12-14 20:30:30
