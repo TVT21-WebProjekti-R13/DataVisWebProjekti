@@ -35,11 +35,19 @@ export default function ButtonAppBar() {
             Visualisointityökalu
           </Typography>
           {isMatch ? <></> : <Button>
-          <Link style={{textDecoration: 'none', color: 'white'}} to="/view/emissionsources"><FactoryIcon sx={{color: 'orange'}}/></Link>
+          <Link style={{textDecoration: 'none', color: 'white'}} to="/view/emissionsources">Lämpötilatiedot ja C02 pitoisuudet</Link>
           </Button>}
+        
+      <br/>
+      <br/>
+      <br/>
+    
           {isMatch ? <></> : <Button className="nav-item dropdown">
-          <Link className="w-100"  style={{textDecoration: 'none', color: 'white'}} to="/view/temperaturedata"><OutdoorGrillIcon sx={{color: 'orange'}}/></Link>
+          <Link className="w-100"  style={{textDecoration: 'none', color: 'white'}} to="/view/temperaturedata">Päästölähteet</Link>
           </Button>}
+      <br/>
+      <br/>
+      <br/>
           {isMatch ? <></> : <Button variant="contained" size="large" sx={{backgroundColor: 'orange'}}>
           <Link style={{ textDecoration: 'none', color: 'black', }}to="/login">Kirjaudu</Link>
           </Button>}
