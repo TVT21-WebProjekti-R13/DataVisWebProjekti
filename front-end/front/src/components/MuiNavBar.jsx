@@ -35,7 +35,7 @@ export default function ButtonAppBar() {
             Visualisointityökalu
           </Typography>
           {isMatch ? <></> : <Button>
-          <Link style={{textDecoration: 'none', color: 'white'}} to="/view/emissionsources">Lämpötilatiedot ja C02 pitoisuudet</Link>
+          <Link style={{textDecoration: 'none', color: 'white'}} to="/view/temperaturedata">Lämpötilatiedot ja C02 pitoisuudet</Link>
           </Button>}
         
       <br/>
@@ -43,7 +43,7 @@ export default function ButtonAppBar() {
       <br/>
     
           {isMatch ? <></> : <Button className="nav-item dropdown">
-          <Link className="w-100"  style={{textDecoration: 'none', color: 'white'}} to="/view/temperaturedata">Päästölähteet</Link>
+          <Link className="w-100"  style={{textDecoration: 'none', color: 'white'}} to="/view/emissionsources">Päästölähteet</Link>
           </Button>}
       <br/>
       <br/>
