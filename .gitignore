@@ -3,6 +3,7 @@ front-end/front/.env
 front-end/front/.env.production
 front-end/front/.gcloudignore
 front-end/front/node_modules
+front-end/front/build
 front-end/front/clientAppEngine.yaml
 
 #back-end
