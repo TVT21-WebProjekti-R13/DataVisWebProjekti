@@ -2,10 +2,11 @@ runtime: nodejs18
 service: datavisserver
 
 env_variables:
-  DB_HOST: "cloudsql/logical-codex-367210:europe-north1:web-projekti-sql-tietokanta"
+  DB_HOST: "/cloudsql/logical-codex-367210:europe-north1:web-projekti-sql-tietokanta"
   DB_USER: "root"
   DB_PASS: "12345"
   DB_NAME: "sqltietokanta"
   JWT_SECRET: "test"
-  FRONT_URL: "https://logical-codex-367210.lm.r.appspot.com/"
+  FRONT_URL: "https://logical-codex-367210.lm.r.appspot.com"
+  DOMAIN_NAME: "datavisserver-dot-logical-codex-367210.lm.r.appspot.com"
   

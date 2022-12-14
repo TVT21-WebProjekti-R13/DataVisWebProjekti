@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
+  socketPath: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
@@ -71,12 +71,11 @@ const loginUser = (req, res) => {
 
   res
     .cookie("token", token, {
-      httpOnly: true,
-      sameSite: true,
+      httpOnly: false,
+      sameSite: 'None',
       secure: true,
       maxAge: 2592000000,
-      path: "/",
-      domain: "localhost",
+      domain: process.env.DOMAIN_NAME,
     })
     .status(200)
     .json({ auth: true });

@@ -53,7 +53,7 @@ export default function Visuals(props) {
   const handleSubmit = async (e) => {
     table = tablestate;
     e.preventDefault();
-    let result = await axios.post(process.env.REACT_APP_API_URL + '/data/saveData', {
+    let result = await axios.post('/data/saveData', {
       params:
       {
         data1: table,
@@ -69,7 +69,7 @@ export default function Visuals(props) {
 
   //Get data from backend and set it to charts Datasets and to the useState
   const fetchData = async () => {
-    let result = await axios.get(process.env.REACT_APP_API_URL + "/data/getData",
+    let result = await axios.get("/data/getData",
       {
         params:
         {

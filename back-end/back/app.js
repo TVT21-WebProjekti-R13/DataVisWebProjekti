@@ -20,6 +20,22 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+/*
+const originWhitelist = [
+  'https://storage.googleapis.com/logical-codex-367210.appspot.com',
+  'https://logical-codex-367210.lm.r.appspot.com'
+]
+const corsOptions = {
+  origin: function(origin, callback) {
+    let isWhitelisted = originWhitelist.indexOf(origin) !== -1
+    callback(null, isWhitelisted)
+  },
+  credentials: true
+}
+
+app.use(cors(corsOptions))
+*/
+
 //app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cors({ origin: process.env.FRONT_URL, credentials: true}))
 //app.use(cors({ origin: "storage.googleapis.com/logical-codex-367210.appspot.com"}))
@@ -58,7 +74,7 @@ app.use("/data", dataRouter);
 app.use("/users", usersRouter);
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
+  socketPath: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
