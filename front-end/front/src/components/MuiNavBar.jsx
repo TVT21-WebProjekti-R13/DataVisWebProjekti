@@ -11,12 +11,22 @@ import { Link } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import FactoryIcon from '@mui/icons-material/Factory';
 import OutdoorGrillIcon from '@mui/icons-material/OutdoorGrill';
+import { Drawer, useTheme, useMediaQuery} from '@mui/material';
+import DrawerComponent from './DrawerComponent';
 
 export default function ButtonAppBar() {
+
+  const theme = useTheme();
+    console.log(theme);
+    const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+    console.log(isMatch);
+
+
   return (
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="static" id="navcolor">
         <Toolbar>
+          
             <Button className="nav-item dropdown">
                 <Link className="nav-item" to="/"><HomeIcon sx={{color: 'orange'}}/></Link>
             </Button>
@@ -24,15 +34,16 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Visualisointityökalu
           </Typography>
-          <Button>
+          {isMatch ? <></> : <Button>
           <Link style={{textDecoration: 'none', color: 'white'}} to="/view/emissionsources"><FactoryIcon sx={{color: 'orange'}}/></Link>
-          </Button>
-          <Button className="nav-item dropdown">
+          </Button>}
+          {isMatch ? <></> : <Button className="nav-item dropdown">
           <Link className="w-100"  style={{textDecoration: 'none', color: 'white'}} to="/view/temperaturedata"><OutdoorGrillIcon sx={{color: 'orange'}}/></Link>
-          </Button>
-          <Button variant="contained" size="large" sx={{backgroundColor: 'orange'}}>
+          </Button>}
+          {isMatch ? <></> : <Button variant="contained" size="large" sx={{backgroundColor: 'orange'}}>
           <Link style={{ textDecoration: 'none', color: 'black', }}to="/login">Kirjaudu</Link>
-          </Button>
+          </Button>}
+          <DrawerComponent/>
         </Toolbar>
       </AppBar>
     </Box>
