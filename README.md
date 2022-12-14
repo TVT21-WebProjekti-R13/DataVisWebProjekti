@@ -1,9 +1,9 @@
 # DataVis
 ![banneri kuva sovelluksesta](/assets/banner.png)
 ### Kuvaus
-Full-stack webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. Projekti on tehty Oulun Ammattikorkeakoulun kurssille Web ohjelmoinnin projektityö. Sovelluksessa käyttäjän on tarkoitus pystyä luomaan oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja annetuista dataseteistä, sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei tarvitse käyttäjän luomista.
+Full-stack webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. Projekti on tehty Oulun Ammattikorkeakoulun kurssille Web ohjelmoinnin projektityö. Sovelluksessa käyttäjän on tarkoitus pystyä luomaan oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja annetuista dataseteistä, sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei edellytä käyttäjän luomista.
 
-Datana toimii useita tieteellisiä tuktkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista, sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
+Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista, sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
 
 ![kuva visualisoinnin luonti valikosta](/assets/login.png)
 
@@ -39,10 +39,10 @@ Fullstack
 Fullstack  
 
 ### Sovelluksen arkkitehtuuri
-Selaimessa esitettävä react sovellus kutsuu palvelimen rajapintaa käyttäjän, datan ja visualisointien hakemiseksi.
-Palvelimella NodeJS vastaa sovelluksen http pyyntöihin, sekä hakee pyydettäessä tietokannasta dataa.
-Tietokanta yksinkertainen relaatiotietokanta.
-kaikki osat pyöriävt Google Cloud Service alustalla omina osinaan.
+Selaimessa esitettävä React-sovellus kutsuu palvelimen rajapintaa käyttäjän, datan ja visualisointien hakemiseksi.
+Palvelimella NodeJS vastaa sovelluksen HTTP-pyyntöihin, sekä hakee pyydettäessä tietokannasta dataa.
+Tietokantana on yksinkertainen relaatiotietokanta.
+Kaikki osat pyörivt Google Cloud Service alustalla omina osinaan.
 
 ### Linkki sovellukseen
 
