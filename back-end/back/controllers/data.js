@@ -2,7 +2,7 @@ const mysql = require("mysql2/promise");
 const { customAlphabet } = require("nanoid");
 
 const db = mysql.createPool({
-    host: process.env.DB_HOST,
+    socketPath: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
@@ -45,6 +45,8 @@ const getData = async (req, res) => {
 }
 
 const saveData = async (req, res) => {
+    const { selectedVisuals } = req.body;
+    console.log(selectedVisuals)
     try {
         const { selectedVisuals } = req.body;
         const newViewID = customAlphabet("1234567890abcdef", 10)();
@@ -52,7 +54,7 @@ const saveData = async (req, res) => {
             "INSERT INTO views (visuals, owner, viewID) VALUES (?, ?, ?)",
             [selectedVisuals.toString(), req.user.id, newViewID]
         );
-        res.status(200).json({ viewID: newViewID } );
+        res.status(200).json({ viewID: newViewID });
     } catch (error) {
         console.log(error);
     }
@@ -95,14 +97,14 @@ const getUserVisuals = async (req, res) => {
 };
 
 const deleteVisual = async (req, res) => {
-  try {
-    const { viewID } = req.params;
-    await db.query("DELETE FROM views WHERE viewID = ? AND owner = ?", [viewID, req.user.id]);
-    res.status(200).json({ message: "success" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+    try {
+        const { viewID } = req.params;
+        await db.query("DELETE FROM views WHERE viewID = ? AND owner = ?", [viewID, req.user.id]);
+        res.status(200).json({ message: "success" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 };
 
 module.exports = {

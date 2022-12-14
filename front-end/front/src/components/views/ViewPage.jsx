@@ -11,7 +11,7 @@ export default function ViewPage() {
   const [chartData, setChartData] = useState([]);
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/data/${viewID}`);
+    const { data } = await axios.get(`/data/${viewID}`);
     return data;
   };
 
@@ -19,7 +19,7 @@ export default function ViewPage() {
     fetchData().then((data) => {
       setChartData(data);
     });
-  }, []);
+  }, [viewID]);
 
   return (
     <div>
