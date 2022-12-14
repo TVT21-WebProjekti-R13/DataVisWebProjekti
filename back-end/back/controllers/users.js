@@ -85,7 +85,13 @@ const deleteUser = async (req, res) => {
   try {
     await db.query("DELETE FROM users WHERE id = ?", [req.user.id]);
     await db.query("DELETE FROM views WHERE owner = ?", [req.user.id]);
-    res.status(200).clearCookie("token").json({ message: "User deleted" });
+    res.status(200).clearCookie("token", {
+      httpOnly: false,
+      sameSite: 'None',
+      secure: true,
+      maxAge: 2592000000,
+      domain: process.env.DOMAIN_NAME}).status(200).json({ auth: false })
+      .json({ message: "User deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
