@@ -45,17 +45,23 @@ const getData = async (req, res) => {
 }
 
 const saveData = async (req, res) => {
+<<<<<<< HEAD
     const { selectedVisuals } = req.body;
     console.log(selectedVisuals)
+=======
+>>>>>>> f03f5ba03d46e3717735afcf3e506bdf31f1368b
     try {
+        const { selectedVisuals } = req.body;
+        const newViewID = customAlphabet("1234567890abcdef", 10)();
         await db.query(
             "INSERT INTO views (visuals, owner, viewID) VALUES (?, ?, ?)",
-            [selectedVisuals.toString(), req.user.id, customAlphabet("1234567890abcdef", 10)()]
+            [selectedVisuals.toString(), req.user.id, newViewID]
         );
+        res.status(200).json({ viewID: newViewID } );
     } catch (error) {
         console.log(error);
     }
-    res.status(200).json({ message: "success" });
+    res.status(200).json();
 };
 
 const Update = async (req, res) => {

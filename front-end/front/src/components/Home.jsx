@@ -6,10 +6,12 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 function Home() {
+  const [userVisuals, setUserVisuals] = useState([]);
+
   return (
     <>
-      <CreateView />
-      <UserVisuals />
+      <CreateView userVisuals={userVisuals} setUserVisuals={setUserVisuals}/>
+      <UserVisuals userVisuals={userVisuals} setUserVisuals={setUserVisuals}/>
     </>
   );
 }

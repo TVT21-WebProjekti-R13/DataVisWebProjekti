@@ -6,10 +6,17 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 
+<<<<<<< HEAD
 export const CreateView = () => {
   const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8", "v9"]
 
   const handleSubmit = async (e) => {
+=======
+export const CreateView = ({ userVisuals, setUserVisuals }) => {
+  const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
+
+  const handleSubmit = async(e) => {
+>>>>>>> f03f5ba03d46e3717735afcf3e506bdf31f1368b
     e.preventDefault()
     const selectedVisuals = []
     visuals.forEach((visual) => {
@@ -18,7 +25,13 @@ export const CreateView = () => {
       }
     })
     console.log(selectedVisuals);
+<<<<<<< HEAD
     await axios.post('/data/saveData', { selectedVisuals })
+=======
+    axios.post('/data/saveData', { selectedVisuals }).then((res) => {
+      setUserVisuals([...userVisuals, res.data])
+    });
+>>>>>>> f03f5ba03d46e3717735afcf3e506bdf31f1368b
   }
 
   return (
