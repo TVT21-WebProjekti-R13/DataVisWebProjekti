@@ -1,9 +1,9 @@
 # DataVis
 ![banneri kuva sovelluksesta](/assets/banner.png)
 ### Kuvaus
-Full-stack webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. Projekti on tehty Oulun Ammattikorkeakoulun kurssille Web ohjelmoinnin projektityö. Sovelluksessa käyttäjän on tarkoitus pystyä luomaan oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja annetuista dataseteistä, sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei edellytä käyttäjän luomista.
+Full-stack webprojekti datan visualisoinnille esimääritetyistä datalähteistä. Projekti on tehty Oulun ammattikorkeakoulun kurssille Web-ohjelmoinnin projektityö. Sovelluksessa käyttäjä voi katsoa datalähteistä tehtyjä visualisointeja. Käyttäjä voi kirjautumalla luoda omia visualisointinäkymiä annetuista datalähteistä sekä jakaa oman näkymän osoitteen.
 
-Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista, sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
+Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
 
 ![kuva visualisoinnin luonti valikosta](/assets/login.png)
 
@@ -40,9 +40,9 @@ Fullstack
 
 ### Sovelluksen arkkitehtuuri
 Selaimessa esitettävä React-sovellus kutsuu palvelimen rajapintaa käyttäjän, datan ja visualisointien hakemiseksi.
-Palvelimella NodeJS vastaa sovelluksen HTTP-pyyntöihin, sekä hakee pyydettäessä tietokannasta dataa.
+Palvelimella NodeJS vastaa sovelluksen HTTP-pyyntöihin sekä hakee pyydettäessä tietokannasta dataa.
 Tietokantana on yksinkertainen relaatiotietokanta.
-Kaikki osat pyörivt Google Cloud Service alustalla omina osinaan.
+Kaikki osat pyörivät Google Cloud Service alustalla omina osinaan.
 
 ### Linkki sovellukseen
 
