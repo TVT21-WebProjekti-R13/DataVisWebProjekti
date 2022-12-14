@@ -23,7 +23,6 @@ DROP TABLE IF EXISTS `descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `descriptions` (
-  `vis` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `datalink` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `desclink` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
@@ -36,7 +35,7 @@ CREATE TABLE `descriptions` (
 
 LOCK TABLES `descriptions` WRITE;
 /*!40000 ALTER TABLE `descriptions` DISABLE KEYS */;
-INSERT INTO `descriptions` VALUES ('V1','https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','Lämpötilailmiöiden rekonstruktio'),('V2','https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),('V3','https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksidimittaukset Mauna Loan asemalta'),('V4','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidipitoisuudet etelämantereen jääporaus näytteistä'),('V5','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jääporausnäytteistä'),('V6','https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jääporausnäytteistä'),('V7','http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),('V8','https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),('V9','https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain'),('V10','https://www.southampton.ac.uk/~cpd/history.html',' ','Ilmaston kehitykseen vaikuttavia ihmisen evoluution tapahtumia');
+INSERT INTO `descriptions` VALUES ('https://www.metoffice.gov.uk/hadobs/hadcrut5',' ','Lämpötilailmiöiden rekonstruktio'),('https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt','https://www.nature.com/articles/nature03265','Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),('https://gml.noaa.gov/ccgg/trends/','https://gml.noaa.gov/ccgg/about/co2_measurements.html','Hiilidioksidimittaukset Mauna Loan asemalta'),('https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidipitoisuudet etelämantereen jääporaus näytteistä'),('https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jääporausnäytteistä'),('https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jääporausnäytteistä'),('http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),('https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),('https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain'),('https://www.southampton.ac.uk/~cpd/history.html',' ','Ilmaston kehitykseen vaikuttavia ihmisen evoluution tapahtumia');
 /*!40000 ALTER TABLE `descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -821,6 +820,9 @@ CREATE TABLE `visuals` (
   `visual_name` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `tables` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `datalink` text COLLATE utf8mb4_bin NOT NULL,
+  `desclink` text COLLATE utf8mb4_bin NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -831,7 +833,7 @@ CREATE TABLE `visuals` (
 
 LOCK TABLES `visuals` WRITE;
 /*!40000 ALTER TABLE `visuals` DISABLE KEYS */;
-INSERT INTO `visuals` VALUES (8,'v1v2','v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly',''),(9,'v3v4','v3annual,v3monthly,v4,v4de2,v4dss',''),(10,'v5','v5',''),(11,'v6','v6',''),(12,'v7','v7a1,v7c1,v10',''),(13,'v8','v8',''),(14,'v9','v9byindustry,v9bysector,v9bysubsector','');
+INSERT INTO `visuals` VALUES (8,'v1v2','v2,v1globalannual,v1globalmonthly,v1northernannual,v1northernmonthly,v1southernannual,v1southernmonthly','','https://www.metoffice.gov.uk/hadobs/hadcrut5, https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt',' ,https://www.nature.com/articles/nature03265','Lämpötilailmiöiden rekonstruktio, Pohjoisen pallonpuoliskon lämpötilahistorian rekonstruktio'),(9,'v3v4','v3annual,v3monthly,v4,v4de2,v4dss','','https://gml.noaa.gov/ccgg/trends/, https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat','https://gml.noaa.gov/ccgg/about/co2_measurements.html, https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html','Hiilidioksidimittaukset Mauna Loan asemalta, Hiilidioksidipitoisuudet etelämantereen jäänporaus näytteistä'),(10,'v5','v5','','https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2','https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html','Hiilidioksidipitoisuudet Vostok-aseman jäänporausnäytteistä'),(11,'v6','v6','','https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt','https://www.ncei.noaa.gov/access/paleo-search/study/17975','Hiilidioksidipitoisuudet etelämantereen jäänporausnäytteistä'),(12,'v7','v7a1,v7c1,v10','','http://carolynsnyder.com/publications.php','https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf','Rekonstruktio maailman lämpötilahistoriasta 2 milj. vuoden ajalta'),(13,'v8','v8','','https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D','https://essd.copernicus.org/articles/14/1917/2022/','Maailman hiilidioksidibudjetti maittain'),(14,'v9','v9byindustry,v9bysector,v9bysubsector','','https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx','https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector','Maailman hiilidioksidipäästöt sektoreittain');
 /*!40000 ALTER TABLE `visuals` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -844,4 +846,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-14 18:44:03
+-- Dump completed on 2022-12-14 20:30:30
