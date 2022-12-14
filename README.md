@@ -3,7 +3,7 @@
 ### Kuvaus
 Full-stack webprojekti datan visualisoinnille esimääritetyistä datalähteistä. Projekti on tehty Oulun ammattikorkeakoulun kurssille Web-ohjelmoinnin projektityö. Sovelluksessa käyttäjä voi katsoa datalähteistä tehtyjä visualisointeja. Käyttäjä voi kirjautumalla luoda omia visualisointinäkymiä annetuista datalähteistä sekä jakaa oman näkymän osoitteen.
 
-Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
+Datana toimii useita tieteellisiä tutkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidipitoisuuksista sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
 
 ![kuva visualisoinnin luonti valikosta](/assets/login.png)
 
