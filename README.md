@@ -1,11 +1,9 @@
 # DataVis
 ![banneri kuva sovelluksesta](/assets/banner.png)
 ### Kuvaus
-Full-stack webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. Projekti on tehty Oulun Ammattikorkeakoulun kurssille Web ohjelmoinnin projektityö.
+Full-stack webprojekti datan visualisoinnille esimääritetyistä datanlähteistä. Projekti on tehty Oulun Ammattikorkeakoulun kurssille Web ohjelmoinnin projektityö. Sovelluksessa käyttäjän on tarkoitus pystyä luomaan oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja annetuista dataseteistä, sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei tarvitse käyttäjän luomista.
 
 Datana toimii useita tieteellisiä tuktkimuksia ja mittaustuloksia ilmaston lämpötiloista, hiilidioksidi pitoisuuksista, sekä rekonstruktioita ilmastosta jopa kahden miljoonan vuoden ajalta.
-
-Käyttäjän on tarkoitus pystyä luomaan oma käyttäjä sivustolle ja sitä kautta luoda omia visualisointeja, sekä jakaa visualisointejaan muille linkkeinä. Visualisointien katsominen ei tarvitse käyttäjän luomista.
 
 ![kuva visualisoinnin luonti valikosta](/assets/login.png)
 
