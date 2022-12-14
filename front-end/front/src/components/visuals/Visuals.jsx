@@ -9,7 +9,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Colors,
 } from 'chart.js';
 import { useParams } from 'react-router-dom';
 ChartJS.register(
@@ -17,10 +18,13 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  Colors,
   Title,
   Tooltip,
   Legend
 );
+
+ChartJS.defaults.color='#000000'
 
 export default function Visuals(props) {
   const [chartData, setChartData] = useState();

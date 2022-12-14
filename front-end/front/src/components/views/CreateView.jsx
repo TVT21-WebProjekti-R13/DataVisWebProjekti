@@ -1,10 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import Styles from "./ViewStyles.css";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
 
-export const CreateView = () => {
+export const CreateView = ({ userVisuals, setUserVisuals }) => {
   const visuals = ["v1v2", "v3v4", "v5", "v6", "v7", "v8"]
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const selectedVisuals = []
     visuals.forEach((visual) => {
@@ -13,22 +18,24 @@ export const CreateView = () => {
       }
     })
     console.log(selectedVisuals);
-    axios.post('/data/saveData', { selectedVisuals })
+    axios.post('/data/saveData', { selectedVisuals }).then((res) => {
+      setUserVisuals([...userVisuals, res.data])
+    });
   }
 
   return (
     <div>
-      <h1>Luo näkymä</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 class="container" style={{ color: 'white', fontSize: '55px' }}>Luo visualisointi</h1>
+      <form class="form-center" onSubmit={handleSubmit}>
         {visuals.map((visual) => {
           return (
-            <div key={visual}>
-              <input type="checkbox" id={visual} name={visual} />
-              <label htmlFor={visual}>{visual}</label>
+            <div class="cbposition" key={visual} >
+              <Checkbox style={{ color: "orange" }} id={visual} name={visual} />
+              <label style={{ color: "white" }} htmlFor={visual}>{visual}</label>
             </div>
           )
         })}
-        <button type="submit">Luo</button>
+        <Button variant="contained" sx={{ backgroundColor: 'orange', color: 'black' }} type="submit">Luo</Button>
       </form>
     </div>
   )

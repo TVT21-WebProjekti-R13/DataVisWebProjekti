@@ -1,6 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Styles from "./Styles.css"
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,28 +35,44 @@ const Login = () => {
 
   return (
     <>
-      <div>Login</div>
+    <Box sx={{ left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2,}}>
+      
       <form onSubmit={handleLogin}>
-        <label>Username</label>
-        <input type="text" onChange={(e) => setUsername(e.target.value)} />
-        <label>Password</label>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Login</button>
+      <h2>Login</h2>
+        <br/>
+        <TextField id="outlined-basic" label="Username" variant="outlined" type="text" sx={{color: 'red'}} onChange={(e) => setUsername(e.target.value)} />
+        <br/>
+        <br/>
+        <TextField type="password" id="outlined-basic" label="Password" variant="outlined"  onChange={(e) => setPassword(e.target.value)} />
+        <br/>
+        <br/>
+        <Button variant="contained" type="submit">Login</Button>
       </form>
-      <div>Sign up</div>
+      </Box>
+      <>
+      <br/>
+      <br/>
+      <br/>
+      </>
+      <Box sx={{ top:'50%', left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2,}}>
       <form onSubmit={handleSignup}>
-        <label>Username</label>
-        <input type="text" onChange={(e) => setUsername(e.target.value)} />
-        <label>Password</label>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Sign Up</button>
+      <h2>Sign up</h2>
+        <br/>
+        <TextField id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} />
+        <br/>
+        <br/>
+        <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+        <br/>
+        <br/>
+        <Button variant="contained" type="submit">Sign Up</Button>
       </form>
-      <div>
-        <button onClick={(e) => {handleDelete(e)}}>Poista käyttäjäsi</button>
+    </Box>
+    
+    <Box sx={{ top: '87%', left: '37%', position: "fixed", p: 10, borderRadius: 2,}}>
+    <div>
+    <Button variant="contained" onClick={(e) => {handleLogout(e)}}>Kirjaudu ulos</Button> <Button variant="contained" onClick={(e) => {handleDelete(e)}}>Poista käyttäjäsi</Button> 
       </div>
-      <div>
-        <button onClick={(e) => {handleLogout(e)}}>Kirjaudu ulos</button>
-      </div>
+    </Box>
     </>
   );
 };
