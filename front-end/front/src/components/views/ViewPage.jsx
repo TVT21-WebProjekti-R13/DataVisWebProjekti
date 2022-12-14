@@ -19,7 +19,7 @@ export default function ViewPage() {
     fetchData().then((data) => {
       setChartData(data);
     });
-  }, []);
+  }, [viewID]);
 
   return (
     <div>
