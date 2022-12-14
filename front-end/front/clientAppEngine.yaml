@@ -3,6 +3,7 @@ service: default
 
 env_variables:
   REACT_APP_API_URL: https://datavisserver-dot-logical-codex-367210.lm.r.appspot.com
+  JWT_SECRET: "ainutlaatuinensalaisuus"
 
 handlers:
 - url: /static/js/(.*)

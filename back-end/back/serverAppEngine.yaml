@@ -6,7 +6,7 @@ env_variables:
   DB_USER: "root"
   DB_PASS: "12345"
   DB_NAME: "sqltietokanta"
-  JWT_SECRET: "test"
+  JWT_SECRET: "ainutlaatuinensalaisuus"
   FRONT_URL: "https://logical-codex-367210.lm.r.appspot.com"
   DOMAIN_NAME: "datavisserver-dot-logical-codex-367210.lm.r.appspot.com"
   
