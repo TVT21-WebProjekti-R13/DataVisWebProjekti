@@ -10,6 +10,7 @@ export default function ViewPage() {
   const { viewID } = useParams();
   const [chartData, setChartData] = useState([]);
 
+  // fetch data for charts
   const fetchData = async () => {
     const { data } = await axios.get(`/data/${viewID}`);
     return data;
@@ -21,6 +22,7 @@ export default function ViewPage() {
     });
   }, [viewID]);
 
+  // render charts
   return (
     <div>
       {chartData.map((chart) => {

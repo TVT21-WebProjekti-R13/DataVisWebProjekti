@@ -57,14 +57,43 @@ export default function VisualsV9({ chart }) {
     onClick: graphClickEvent,
   }
 
+  const boldText = {
+    fontWeight: 'bold',
+    color: "#fff",
+    textAlign: "center",
+    fontSize: 20,
+  };
 
 
-
-  console.log(data)
+  const desclink = chart.desclink.split(",");
+  const datalink = chart.datalink.split(",");
 
   return (
-    <div style={{ width: "60%" }}>
-      <Pie options={options} data={data} />
+    <div style={boldText}>
+      <p>{chart.description}</p>
+      <p>
+        Artikkeli:{" "}
+        {desclink.map((link) => {
+          return (
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          );
+        })}
+      </p>
+      <p>
+        Data:{" "}
+        {datalink.map((link) => {
+          return (
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          );
+        })}
+      </p>
+      <div style={{margin: 'auto', width: '60%'}}>
+        <Pie options={options} data={data} />
+      </div>
     </div>
   );
 }

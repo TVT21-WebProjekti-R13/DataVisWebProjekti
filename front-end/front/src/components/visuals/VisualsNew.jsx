@@ -118,11 +118,35 @@ export default function Visualsnew({ chart }) {
     textAlign: "center",
     fontSize: 20,
   };
+
+  const desclink = chart.desclink.split(",");
+  const datalink = chart.datalink.split(",");
+
   return (
     <div style={boldText}>
-
+      <p>{chart.description}</p>
+      <p>
+        Artikkeli:{" "}
+        {desclink.map((link) => {
+          return (
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          );
+        })}
+      </p>
+      <p>
+        Data:{" "}
+        {datalink.map((link) => {
+          return (
+            <a href={link} target="_blank">
+              {link}
+            </a>
+          );
+        })}
+      </p>
       <Line options={options} data={data} />
       {infoText}
-    </div >
+    </div>
   );
 }
