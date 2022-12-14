@@ -15,6 +15,7 @@ export default function VisualsV9({ chart }) {
   const SubSublabels = chart.data[2].map((item) => item["sub-sector"]);
   const SubSubvalues = chart.data[2].map((item) => item["Share of global greenhouse gas emissions (%)"]);
   console.log(chart.data)
+
   function generateColors(x) {
     let len = x.length
     let hex;
