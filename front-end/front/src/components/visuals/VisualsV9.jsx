@@ -62,7 +62,7 @@ export default function VisualsV9({ chart }) {
   console.log(data)
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "60%" }}>
       <Pie options={options} data={data} />
     </div>
   );

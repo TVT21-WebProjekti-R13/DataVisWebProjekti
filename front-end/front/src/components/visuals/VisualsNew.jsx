@@ -3,6 +3,7 @@ import { Chart } from "chart.js/auto";
 import "chartjs-adapter-luxon";
 import { Line, Pie } from "react-chartjs-2";
 import { useState } from "react";
+import { fontSize, textAlign } from "@mui/system";
 
 export default function Visualsnew({ chart }) {
   const data = {
@@ -21,6 +22,11 @@ export default function Visualsnew({ chart }) {
       };
     }),
   };
+  let info = [];
+  for (let i = 0; i < chart.data[2].length; i++) {
+    info.push(chart.data[2][i].info)
+  }
+  const [infoText, setInfotext] = useState();
 
   data.datasets.forEach((dataset, index) => {
     const tablearray = chart.tables.split(",");
@@ -33,10 +39,18 @@ export default function Visualsnew({ chart }) {
       dataset.yAxisID = "temperature";
       dataset.showLine = false;
       dataset.pointRadius = 10;
+      dataset.hoverRadius = 10;
     }
   });
 
-    
+  function graphClickEvent(event, array) {
+
+    if (array[0].element.options.radius === 10) {
+      let index = array[0].index;
+      setInfotext(info[index])
+
+    }
+  }
 
   const options = {
     responsive: true,
@@ -55,6 +69,7 @@ export default function Visualsnew({ chart }) {
         text: "Data",
       },
     },
+    onClick: graphClickEvent,
   };
 
   if (data.datasets.some((dataset) => dataset.label === "v5" || dataset.label === "v6")) {
@@ -90,13 +105,20 @@ export default function Visualsnew({ chart }) {
     };
   }
 
-  console.log(data)
-  console.log(options)
-  
+  //console.log(data)
+  //console.log(options)
 
+  const boldText = {
+    fontWeight: 'bold',
+    color: "#fff",
+    textAlign: "center",
+    fontSize: 20,
+  };
   return (
-    <div>
+    <div style={boldText}>
+
       <Line options={options} data={data} />
-    </div>
+      {infoText}
+    </div >
   );
 }

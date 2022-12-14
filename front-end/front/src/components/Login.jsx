@@ -35,44 +35,44 @@ const Login = () => {
 
   return (
     <>
-    <Box sx={{ left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2,}}>
-      
-      <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-        <br/>
-        <TextField id="outlined-basic" label="Username" variant="outlined" type="text" sx={{color: 'red'}} onChange={(e) => setUsername(e.target.value)} />
-        <br/>
-        <br/>
-        <TextField type="password" id="outlined-basic" label="Password" variant="outlined"  onChange={(e) => setPassword(e.target.value)} />
-        <br/>
-        <br/>
-        <Button variant="contained" type="submit">Login</Button>
-      </form>
+      <Box sx={{ left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2, }}>
+
+        <form onSubmit={handleLogin}>
+          <h2>Login</h2>
+          <br />
+          <TextField id="outlined-basic" label="Username" variant="outlined" type="text" sx={{ color: 'red' }} onChange={(e) => setUsername(e.target.value)} />
+          <br />
+          <br />
+          <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+          <br />
+          <br />
+          <Button variant="contained" type="submit">Login</Button>
+        </form>
       </Box>
       <>
-      <br/>
-      <br/>
-      <br/>
+        <br />
+        <br />
+        <br />
       </>
-      <Box sx={{ top:'50%', left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2,}}>
-      <form onSubmit={handleSignup}>
-      <h2>Sign up</h2>
-        <br/>
-        <TextField id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} />
-        <br/>
-        <br/>
-        <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
-        <br/>
-        <br/>
-        <Button variant="contained" type="submit">Sign Up</Button>
-      </form>
-    </Box>
-    
-    <Box sx={{ top: '87%', left: '37%', position: "fixed", p: 10, borderRadius: 2,}}>
-    <div>
-    <Button variant="contained" onClick={(e) => {handleLogout(e)}}>Kirjaudu ulos</Button> <Button variant="contained" onClick={(e) => {handleDelete(e)}}>Poista käyttäjäsi</Button> 
-      </div>
-    </Box>
+      <Box sx={{ top: '50%', left: '40%', position: "fixed", backgroundColor: '#d6d6d6', p: 10, borderRadius: 2, }}>
+        <form onSubmit={handleSignup}>
+          <h2>Sign up</h2>
+          <br />
+          <TextField id="outlined-basic" label="Username" variant="outlined" onChange={(e) => setUsername(e.target.value)} />
+          <br />
+          <br />
+          <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+          <br />
+          <br />
+          <Button variant="contained" type="submit">Sign Up</Button>
+        </form>
+      </Box>
+
+      <Box sx={{ top: '87%', left: '37%', position: "fixed", p: 10, borderRadius: 2, }}>
+        <div>
+          <Button variant="contained" onClick={(e) => { handleLogout(e) }}>Kirjaudu ulos</Button> <Button variant="contained" onClick={(e) => { handleDelete(e) }}>Poista käyttäjäsi</Button>
+        </div>
+      </Box>
     </>
   );
 };
