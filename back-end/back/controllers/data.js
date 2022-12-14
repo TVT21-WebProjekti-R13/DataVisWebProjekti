@@ -46,6 +46,7 @@ const getData = async (req, res) => {
 
 const saveData = async (req, res) => {
     const { selectedVisuals } = req.body;
+    console.log(selectedVisuals)
     try {
         await db.query(
             "INSERT INTO views (visuals, owner, viewID) VALUES (?, ?, ?)",
@@ -93,14 +94,14 @@ const getUserVisuals = async (req, res) => {
 };
 
 const deleteVisual = async (req, res) => {
-  try {
-    const { viewID } = req.params;
-    await db.query("DELETE FROM views WHERE viewID = ? AND owner = ?", [viewID, req.user.id]);
-    res.status(200).json({ message: "success" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+    try {
+        const { viewID } = req.params;
+        await db.query("DELETE FROM views WHERE viewID = ? AND owner = ?", [viewID, req.user.id]);
+        res.status(200).json({ message: "success" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 };
 
 module.exports = {
