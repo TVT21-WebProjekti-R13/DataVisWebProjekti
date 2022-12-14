@@ -92,7 +92,12 @@ const deleteUser = async (req, res) => {
 };
 
 const logoutUser = (req, res) => {
-  res.clearCookie("token").status(200).json({ auth: false });
+  res.clearCookie("token", {
+    httpOnly: false,
+    sameSite: 'None',
+    secure: true,
+    maxAge: 2592000000,
+    domain: process.env.DOMAIN_NAME}).status(200).json({ auth: false });
 }
 
 module.exports = {
