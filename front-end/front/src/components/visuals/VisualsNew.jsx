@@ -6,6 +6,8 @@ import { useState } from "react";
 import { fontSize, textAlign } from "@mui/system";
 
 export default function Visualsnew({ chart }) {
+  const [infoText, setInfotext] = useState();
+  let info = [];
   const data = {
     datasets: chart.data.map((chartData) => {
       return {
@@ -22,11 +24,10 @@ export default function Visualsnew({ chart }) {
       };
     }),
   };
-  let info = [];
-  for (let i = 0; i < chart.data[2].length; i++) {
-    info.push(chart.data[2][i].info)
-  }
-  const [infoText, setInfotext] = useState();
+
+
+
+
 
   data.datasets.forEach((dataset, index) => {
     const tablearray = chart.tables.split(",");
@@ -36,6 +37,9 @@ export default function Visualsnew({ chart }) {
     } else if (dataset.label === "v7a1") {
       dataset.yAxisID = "temperature";
     } else if (dataset.label === "v10") {
+      for (let i = 0; i < chart.data[2].length; i++) {
+        info.push(chart.data[2][i].info)
+      }
       dataset.yAxisID = "temperature";
       dataset.showLine = false;
       dataset.pointRadius = 10;
