@@ -46,4 +46,4 @@ Kaikki osat pyörivät Google Cloud Service alustalla omina osinaan.
 
 ### Linkki sovellukseen
 
-[DataVis](https://logical-codex-367210.lm.r.appspot.com)
+[DataVis](https://logical-codex-367210.lm.r.appspot.com) (Poissa käytöstä)
